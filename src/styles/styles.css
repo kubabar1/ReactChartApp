@@ -1,0 +1,54 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+html,
+body,
+#root,
+main {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+#zoom_icon_container {
+  font-size: 40px;
+}
+
+
+
+@media(min-width:768px){.menu_item_container{font-size: 0.9vmax;}}
+@media(min-width:850px){.menu_item_container{font-size: 1vmax;}}
+@media(min-width:1200px){.menu_item_container{font-size: 1vmax;}}
+
+
+#move_buttons_container {
+  font-size: 20px;
+}
+
+#menu_nav {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#menu_nav a{
+  color: #ffffff;
+}
+
+
+.menu_item_container :hover{
+  background-color: #555555;
+}
+
+.menu_item_container a:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#chart-container{
+  mix-blend-mode: multiply;
+}
