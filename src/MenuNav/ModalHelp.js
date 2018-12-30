@@ -29,7 +29,7 @@ export class ModalHelp extends React.Component {
     var v = [];
     var i;
     for (i = 0; i < data[0].length; i+=2) {
-      if(i==0){
+      if(i===0){
         v.push([data[0][i],data[0][i+1]])
       }else{
         v.push([parseInt(data[0][i]),parseInt(data[0][i+1])])

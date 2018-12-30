@@ -21,9 +21,9 @@ a {
 
 
 
-@media(min-width:768px){.menu_item_container{font-size: 0.9vmax;}}
-@media(min-width:850px){.menu_item_container{font-size: 1vmax;}}
-@media(min-width:1200px){.menu_item_container{font-size: 1vmax;}}
+@media(min-width:768px){.menu_item_container{font-size: 0.9vmax;} #nav_menu_header{font-size: 0.9vmax;}}
+@media(min-width:850px){.menu_item_container{font-size: 1vmax;} #nav_menu_header{font-size: 1vmax;}}
+@media(min-width:1200px){.menu_item_container{font-size: 1vmax;} #nav_menu_header{font-size: 1vmax;}}
 
 
 #move_buttons_container {
@@ -35,6 +35,10 @@ a {
   color: #ffffff;
 }
 
+#nav_menu_header{
+  background-color: #555555;
+}
+
 #menu_nav a{
   color: #ffffff;
 }
@@ -42,6 +46,8 @@ a {
 
 .menu_item_container :hover{
   background-color: #555555;
+  margin: 0;
+  padding: 0;
 }
 
 .menu_item_container a:hover{

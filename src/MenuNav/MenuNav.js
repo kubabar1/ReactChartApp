@@ -2,10 +2,12 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/styles.css";
 import { MenuItem } from "./MenuItem.js";
+import { MenuHeader } from "./MenuHeader.js";
 import { ModalDataInput } from "./ModalDataInput.js";
 import { ModalColorInput } from "./ModalColorInput.js";
-import { ModalChangeGraphType } from "./ModalChangeGraphType.js";
-import { ModalLoadData } from "./ModalLoadData.js";
+import { ModalSettings } from "./ModalSettings.js";
+import { ModalExportData } from "./ExportModal/ModalExportData.js";
+import { ModalImportData } from "./ImportModal/ModalImportData.js";
 import { ModalHelp } from "./ModalHelp.js";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -14,10 +16,9 @@ export class MenuNav extends React.Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-			modalDataInput:false,
-			modalColorInput:false,
-			modalChangeGraphType:false,
-			modalLoadData:false,
+			settings:false,
+			modalImportData:false,
+			modalExportData:false,
 			modalHelp:false
 	  };
 	}
@@ -29,24 +30,24 @@ export class MenuNav extends React.Component {
 		});
 	}
 
-	toggleColorInput = (e) => {
+	toggleSettings = (e) => {
 		e.preventDefault();
 		this.setState({
-			modalColorInput: !this.state.modalColorInput
+			settings: !this.state.settings
 		});
 	}
 
-	toggleModalChangeGraphType = (e) => {
+	toggleModalImportData = (e) => {
 		e.preventDefault();
 		this.setState({
-			modalChangeGraphType: !this.state.modalChangeGraphType
+			modalImportData: !this.state.modalImportData
 		});
 	}
 
-	toggleModalLoadData = (e) => {
+	toggleModalExportData = (e) => {
 		e.preventDefault();
 		this.setState({
-			modalLoadData: !this.state.modalLoadData
+			modalExportData: !this.state.modalExportData
 		});
 	}
 
@@ -85,41 +86,41 @@ export class MenuNav extends React.Component {
 		});
 	}
 
-	downloadData = () => {
+	/*downloadData = () => {
 		var fileDownload = require('react-file-download');
 		fileDownload(this.props.data, 'graph_app.csv');
-	}
+	}*/
 
 	render() {
 			return (
-			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2 m-0 p-0">
+				<MenuHeader/>
 				<MenuItem icon="fas fa-plus-square" name="Add data" clickMenu={this.toggleDataInput}/>
-				<MenuItem icon="fas fa-eraser" name="Remove data" clickMenu={this.props.removeData}/>
-				<MenuItem icon="fas fa-file-upload" name="Load data" clickMenu={this.toggleModalLoadData}/>
-				<MenuItem icon="fas fa-file-download" name="Download data" clickMenu={this.downloadData}/>
-				<MenuItem icon="fas fa-chart-bar" name="Change type" clickMenu={this.toggleModalChangeGraphType}/>
-				<MenuItem icon="fas fa-fill-drip" name="Change color" clickMenu={this.toggleColorInput}/>
+				<MenuItem icon="fas fa-undo" name="Undo"/>
+				<MenuItem icon="fas fa-file-upload" name="Import data" clickMenu={this.toggleModalImportData}/>
+				<MenuItem icon="fas fa-file-download" name="Export data" clickMenu={this.toggleModalExportData}/>
+				<MenuItem icon="fas fa-cog" name="Settings" clickMenu={this.toggleSettings}/>
 				<MenuItem icon="far fa-question-circle" name="Help" clickMenu={this.toggleHelp}/>
+
 				<ModalDataInput
 					modalDataInput={this.state.modalDataInput}
 					toggle={this.toggleDataInput}
 					addData={this.addData}
 				/>
-				<ModalColorInput
-					modalColorInput={this.state.modalColorInput}
-					toggle={this.toggleColorInput}
-					setColor={this.setColor}
-					color={this.props.color}
-				/>
-				<ModalChangeGraphType
-					modalChangeGraphType={this.state.modalChangeGraphType}
-					toggle={this.toggleModalChangeGraphType}
+				<ModalSettings
+					modalChangeGraphType={this.state.settings}
+					toggle={this.toggleSettings}
 					graphType={this.props.graphType}
 					setGraphType={this.setGraphType}
 				/>
-				<ModalLoadData
-					modalLoadData={this.state.modalLoadData}
-					toggle={this.toggleModalLoadData}
+				<ModalExportData
+					modalExportData={this.state.modalExportData}
+					toggle={this.toggleModalExportData}
+					setData={this.setData}
+				/>
+				<ModalImportData
+					modalImportData={this.state.modalImportData}
+					toggle={this.toggleModalImportData}
 					setData={this.setData}
 				/>
 				<ModalHelp

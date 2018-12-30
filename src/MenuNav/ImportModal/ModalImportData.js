@@ -1,16 +1,17 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/styles.css";
+import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
-import CSVReader from "react-csv-reader";
+import {DataSourceSelect} from "./DataSourceSelect.js"
 
-export class ModalLoadData extends React.Component {
+export class ModalImportData extends React.Component {
 
 	constructor(props) {
 	  super(props);
 	  this.state = {
-			modalLoadData:false
+			modalImportData:false,
+			importSource:null
 	  };
 	}
 
@@ -24,13 +25,18 @@ export class ModalLoadData extends React.Component {
     });
   }
 
-
+	selectImportSource = (sourceOfImport) => {
+		this.setState({
+			importSource:sourceOfImport
+		});
+		console.log(sourceOfImport);
+	}
 
   loadData = (data) => {
     var v = [];
     var i;
     for (i = 0; i < data[0].length; i+=2) {
-      if(i==0){
+      if(i===0){
         v.push([data[0][i],data[0][i+1]])
       }else{
         v.push([parseInt(data[0][i]),parseInt(data[0][i+1])])
@@ -42,13 +48,10 @@ export class ModalLoadData extends React.Component {
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.modalLoadData} toggle={this.props.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.props.toggle}>Select file</ModalHeader>
+        <Modal isOpen={this.props.modalImportData} toggle={this.props.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.props.toggle}>Import data</ModalHeader>
           <ModalBody>
-            <CSVReader
-	 					 cssClass="react-csv-input"
-						  onFileLoaded={this.loadData}
- 					  />
+						<DataSourceSelect selectImportSource={this.selectImportSource}/>
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
