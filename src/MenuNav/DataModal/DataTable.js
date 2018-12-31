@@ -25,13 +25,7 @@ export class DataTable extends React.Component {
     });
   }
 
-  headerFormat = (fieldValue, row, rowIdx, colIdx) => {
-    return 'header_table_format';
-  }
-
-
-
-  convertRowsToAssociativeArray = () => {
+  /*convertRowsToAssociativeArray = () => {
     const rows = this.props.rows;
     const rownames = this.props.rownames;
     const colnames = this.props.colnames;
@@ -40,6 +34,7 @@ export class DataTable extends React.Component {
     let tmp = {};
 
     rownames.forEach((rowname, i) => {
+      tmp["ID"] = i;
       tmp["description"] = rowname;
       colnames.forEach((colname, j)=>{
         tmp[colname] = rows[i][j];
@@ -50,21 +45,48 @@ export class DataTable extends React.Component {
     });
 
     return data;
-  }
+  }*/
 
   renderColorInput = (item, i) => {
     return(
-        <TableHeaderColumn key={i} row='0' col={i+1} dataField='color' dataAlign='center' className={ this.headerFormat }>
-          <input type="color" className="form-control" name="color" value={this.props.colors[i]} onChange={(e) => this.props.handleColorChange(i,e)}/>
-        </TableHeaderColumn>
+      <th key={i}>
+        <input type="color" className="form-control" name="color" value={this.props.colors[i]} onChange={(e) => this.props.handleColorChange(i,e)}/>
+      </th>
     );
   }
 
-  renderRows = (item, i) => {
+  renderColumnDescription = (item, i) => {
     return(
-      <TableHeaderColumn key={i} row='1' col={i+1} dataField={'y'+i} dataAlign='center' className={ this.headerFormat }>
-        {'y'+i}
-      </TableHeaderColumn>
+      <th key={i}>
+        <input type="text" value={this.props.colnames[i]} className="form-control" onChange={(event)=>this.handleChangeColumnName(i,event)}/>
+      </th>
+    );
+  }
+
+
+  handleChangeColumnName = (i,event) => {
+    this.props.setColumnName(i, event.target.value);
+  }
+
+  handleChangeRowName = (i,event) => {
+    this.props.setRowName(i, event.target.value);
+  }
+
+  renderRows = (item, i) => {
+    let tmpRows = [];
+    for (let j = 0; j < item.length; j++) {
+      tmpRows.push(
+        <td>
+          <input type="number" value={item[j]} className="form-control" onChange={(event)=>this.props.setValue(i,j, event.target.value)}/>
+        </td>
+      );
+    }
+
+    return(
+      <tr key={i}>
+        <td className="header_table_format"><input type="text" value={this.props.rownames[i]} className="form-control"  onChange={(event)=>this.handleChangeRowName(i,event)}/></td>
+        {tmpRows}
+      </tr>
     );
   }
 
@@ -85,16 +107,36 @@ export class DataTable extends React.Component {
     };
 
     return (
-      <div>
-        <BootstrapTable options={ options } data={this.convertRowsToAssociativeArray()} cellEdit={cellEdit} hover responsive >
-          <TableHeaderColumn row='0' col='0' dataField='color' dataAlign='center' className={ this.headerFormat }>Color</TableHeaderColumn>
-          {colnames.map(this.renderColorInput)}
+      <div className="">
+          <table className="table table-bordered table-hover">
+            <thead className="header_table_format">
+              <tr>
+                <th>Color</th>
+                {colnames.map(this.renderColorInput)}
+              </tr>
+              <tr>
+                <th>Description</th>
+                {colnames.map(this.renderColumnDescription)}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(this.renderRows)}
 
-          <TableHeaderColumn row='1' col='0' dataField='description' columnClassName={ this.headerFormat } className={ this.headerFormat } isKey={true} dataAlign='center'>Description</TableHeaderColumn>
-          {colnames.map(this.renderRows)}
-
-        </BootstrapTable>
+            </tbody>
+          </table>
       </div>
     );
   }
 }
+
+/*
+<BootstrapTable options={ options } height='400' scrollTop={ 'Bottom' } data={this.convertRowsToAssociativeArray()} cellEdit={cellEdit} hover  >
+  <TableHeaderColumn width='100' row='0' col='0' dataField='color' dataAlign='center' className={ this.headerFormat }>Color</TableHeaderColumn>
+  {colnames.map(this.renderColorInput)}
+
+  <TableHeaderColumn isKey={true} hidden={true} dataField='ID' >ID</TableHeaderColumn>
+  <TableHeaderColumn width='100' row='1' col='0' dataField='description' columnClassName={ this.headerFormat } className={ this.headerFormat } dataAlign='center'>Description</TableHeaderColumn>
+  {colnames.map(this.renderRows)}
+
+</BootstrapTable>
+*/

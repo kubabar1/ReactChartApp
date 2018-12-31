@@ -44,7 +44,7 @@ export class ModalData extends React.Component {
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.modalDataInput} toggle={this.props.toggle} className={this.props.className}>
+        <Modal isOpen={this.props.modalData} toggle={this.props.toggle} size="lg">
           <ModalHeader toggle={this.props.toggle}>Enter data</ModalHeader>
           <ModalBody>
 						<div className="col-12 container">
@@ -66,6 +66,8 @@ export class ModalData extends React.Component {
 								setValue={this.props.setValue}
 								value={this.props.value}
 			          handleColorChange={this.props.handleColorChange}
+								setColumnName={this.props.setColumnName}
+								setRowName={this.props.setRowName}
 							/>
 							<div className="row pt-3 pl-3">
 								<button type="button" className="btn btn-outline-primary" onClick={this.addEmptyRow}><i className="fas fa-plus"></i> Add row</button>

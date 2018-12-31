@@ -104,7 +104,7 @@ export class MenuNav extends React.Component {
 				<MenuItem icon="far fa-question-circle" name="Help" clickMenu={this.toggleHelp}/>
 
 				<ModalData
-					modalDataInput={this.state.modalData}
+					modalData={this.state.modalData}
 					toggle={this.toggleData}
 					addData={this.addData}
 
@@ -125,6 +125,8 @@ export class MenuNav extends React.Component {
 					value={this.props.value}
           handleColorChange={this.props.handleColorChange}
           clearData={this.props.clearData}
+					setColumnName={this.props.setColumnName}
+					setRowName={this.props.setRowName}
 				/>
 				<ModalSettings
 					modalChangeGraphType={this.state.settings}

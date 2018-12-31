@@ -15,24 +15,24 @@ export class App extends React.Component {
       x_name:null,
       y_name:null,
       graphType:"ScatterChart",
-      colors:["#000000","#000000"],
-      rows:[[0,0],[0,0]],
-      nrows:2,
-      ncols:2,
-      colnames:["y0", "y1"],
-      rownames:["x0", "x1"]
+      colors:["#000000","#000000","#000000","#000000"],
+      rows:[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],
+      nrows:4,
+      ncols:4,
+      colnames:["y0", "y1", "y2", "y3"],
+      rownames:["x0", "x1", "x2", "x3"]
     };
   }
 
   clearData = () => {
     if(window.confirm("Do you want to delete all data?")){
       this.setState({
-        colors:["#000000","#000000"],
-        rows:[[0,0],[0,0]],
-        nrows:2,
-        ncols:2,
-        colnames:["y0", "y1"],
-        rownames:["x0", "x1"]
+        colors:["#000000","#000000","#000000","#000000"],
+        rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+        nrows:4,
+        ncols:4,
+        colnames:["y0", "y1", "y2", "y3"],
+        rownames:["x0", "x1", "x2", "x3"]
       })
     }
   }
@@ -220,6 +220,24 @@ export class App extends React.Component {
     });
   }
 
+  setColumnName = (i, name) => {
+    let tmpColnames = this.state.colnames;
+    tmpColnames[i] = name;
+
+    this.setState({
+      colnames: tmpColnames
+    });
+  }
+
+  setRowName = (i, name) => {
+    let tmpRowNames = this.state.rownames;
+    tmpRowNames[i] = name;
+
+    this.setState({
+      rownames: tmpRowNames
+    });
+  }
+
 
   render() {
     return (
@@ -251,6 +269,8 @@ export class App extends React.Component {
           value={this.value}
           handleColorChange={this.handleColorChange}
           clearData={this.clearData}
+          setColumnName={this.setColumnName}
+          setRowName={this.setRowName}
         />
         <MainContent
           zoom={this.state.zoom}
