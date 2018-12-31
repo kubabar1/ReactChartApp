@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/styles.css";
 import { MenuItem } from "./MenuItem.js";
 import { MenuHeader } from "./MenuHeader.js";
-import { ModalDataInput } from "./ModalDataInput.js";
+import { ModalData } from "./DataModal/ModalData.js";
 import { ModalColorInput } from "./ModalColorInput.js";
 import { ModalSettings } from "./ModalSettings.js";
 import { ModalExportData } from "./ExportModal/ModalExportData.js";
@@ -19,14 +19,15 @@ export class MenuNav extends React.Component {
 			settings:false,
 			modalImportData:false,
 			modalExportData:false,
+			modalData:false,
 			modalHelp:false
 	  };
 	}
 
-	toggleDataInput = (e) => {
+	toggleData = (e) => {
 		e.preventDefault();
 		this.setState({
-			modalDataInput: !this.state.modalDataInput
+			modalData: !this.state.modalData
 		});
 	}
 
@@ -61,7 +62,7 @@ export class MenuNav extends React.Component {
 	addData = (x,y) => {
 		this.props.addData(x,y);
 		this.setState({
-			modalDataInput: !this.state.modalDataInput
+			modalData: !this.state.modalData
 		});
 	}
 
@@ -95,17 +96,35 @@ export class MenuNav extends React.Component {
 			return (
 			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2 m-0 p-0">
 				<MenuHeader/>
-				<MenuItem icon="fas fa-plus-square" name="Add data" clickMenu={this.toggleDataInput}/>
+				<MenuItem icon="fas fa-plus-square" name="Add data" clickMenu={this.toggleData}/>
 				<MenuItem icon="fas fa-undo" name="Undo"/>
 				<MenuItem icon="fas fa-file-upload" name="Import data" clickMenu={this.toggleModalImportData}/>
 				<MenuItem icon="fas fa-file-download" name="Export data" clickMenu={this.toggleModalExportData}/>
 				<MenuItem icon="fas fa-cog" name="Settings" clickMenu={this.toggleSettings}/>
 				<MenuItem icon="far fa-question-circle" name="Help" clickMenu={this.toggleHelp}/>
 
-				<ModalDataInput
-					modalDataInput={this.state.modalDataInput}
-					toggle={this.toggleDataInput}
+				<ModalData
+					modalDataInput={this.state.modalData}
+					toggle={this.toggleData}
 					addData={this.addData}
+
+					colors={this.props.colors}
+					rows={this.props.rows}
+					nrows={this.props.nrows}
+					ncols={this.props.ncols}
+					colnames={this.props.colnames}
+					rownames={this.props.rownames}
+
+					addRow={this.props.addRow}
+					addCol ={this.props.addCol}
+					size={this.props.size}
+					setSize={this.props.setSize}
+					setColNames={this.props.setColNames}
+					setRowNames={this.props.setRowNames}
+					setValue={this.props.setValue}
+					value={this.props.value}
+          handleColorChange={this.props.handleColorChange}
+          clearData={this.props.clearData}
 				/>
 				<ModalSettings
 					modalChangeGraphType={this.state.settings}
