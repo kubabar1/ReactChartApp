@@ -25,31 +25,9 @@ export class DataTable extends React.Component {
     });
   }
 
-  /*convertRowsToAssociativeArray = () => {
-    const rows = this.props.rows;
-    const rownames = this.props.rownames;
-    const colnames = this.props.colnames;
-
-    let data = [];
-    let tmp = {};
-
-    rownames.forEach((rowname, i) => {
-      tmp["ID"] = i;
-      tmp["description"] = rowname;
-      colnames.forEach((colname, j)=>{
-        tmp[colname] = rows[i][j];
-      })
-      data.push(tmp);
-
-      tmp = {};
-    });
-
-    return data;
-  }*/
-
   renderColorInput = (item, i) => {
     return(
-      <th key={i}>
+      <th style={{minWidth:"100px"}} key={i}>
         <input type="color" className="form-control" name="color" value={this.props.colors[i]} onChange={(e) => this.props.handleColorChange(i,e)}/>
       </th>
     );
@@ -57,7 +35,7 @@ export class DataTable extends React.Component {
 
   renderColumnDescription = (item, i) => {
     return(
-      <th key={i}>
+      <th style={{minWidth:"100px"}} key={i}>
         <input type="text" value={this.props.colnames[i]} className="form-control" onChange={(event)=>this.handleChangeColumnName(i,event)}/>
       </th>
     );
@@ -76,7 +54,7 @@ export class DataTable extends React.Component {
     let tmpRows = [];
     for (let j = 0; j < item.length; j++) {
       tmpRows.push(
-        <td>
+        <td key={j}>
           <input type="number" value={item[j]} className="form-control" onChange={(event)=>this.props.setValue(i,j, event.target.value)}/>
         </td>
       );
@@ -107,15 +85,15 @@ export class DataTable extends React.Component {
     };
 
     return (
-      <div className="">
+      <div className="table-wrapper-scroll-y table-responsive text-nowrap">
           <table className="table table-bordered table-hover">
             <thead className="header_table_format">
               <tr>
-                <th>Color</th>
+                <th style={{minWidth:"100px"}}>Color</th>
                 {colnames.map(this.renderColorInput)}
               </tr>
               <tr>
-                <th>Description</th>
+                <th style={{minWidth:"100px"}}>Description</th>
                 {colnames.map(this.renderColumnDescription)}
               </tr>
             </thead>

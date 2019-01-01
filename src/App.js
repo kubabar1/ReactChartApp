@@ -11,12 +11,11 @@ export class App extends React.Component {
       zoom:50,
       top:0,
       left:0,
-      data:[['x', 'y']],
       x_name:null,
       y_name:null,
       graphType:"ScatterChart",
       colors:["#000000","#000000","#000000","#000000"],
-      rows:[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]],
+      rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
       nrows:4,
       ncols:4,
       colnames:["y0", "y1", "y2", "y3"],
@@ -120,14 +119,6 @@ export class App extends React.Component {
       colors: tmpColors
     });
   }
-
-
-
-
-
-
-
-
 
   zoomIn = () => {
     var x = this.state.zoom;
@@ -282,9 +273,9 @@ export class App extends React.Component {
           moveBottom={this.moveBottom}
           moveLeft={this.moveLeft}
           moveRight={this.moveRight}
-          data={this.state.data}
-          color={this.state.color}
           graphType={this.state.graphType}
+          rows={this.state.rows}
+          colors={this.state.colors}
         />
       </main>
     );

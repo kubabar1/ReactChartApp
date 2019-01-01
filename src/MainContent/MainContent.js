@@ -15,9 +15,9 @@ export class MainContent extends React.Component {
               zoom={this.props.zoom}
               top={this.props.top}
               left={this.props.left}
-              data={this.props.data}
               color={this.props.color}
               graphType={this.props.graphType}
+              rows={this.props.rows}
             />
           </div>
           <div id="zoom_container" className="col-2">
