@@ -26,12 +26,12 @@ export class App extends React.Component {
   clearData = () => {
     if(window.confirm("Do you want to delete all data?")){
       this.setState({
-        colors:["#000000","#000000","#000000","#000000"],
-        rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-        nrows:4,
-        ncols:4,
-        colnames:["y0", "y1", "y2", "y3"],
-        rownames:["x0", "x1", "x2", "x3"]
+        colors:[],
+        rows:[],
+        nrows:0,
+        ncols:0,
+        colnames:[],
+        rownames:[]
       })
     }
   }
