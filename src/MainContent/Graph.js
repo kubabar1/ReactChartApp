@@ -10,11 +10,7 @@ export class Graph extends React.Component {
 
     return(
       <VictoryChart
-        style={{
-          parent: {
-            border: "1px solid #ccc"
-          }
-        }}
+        style={{}}
       />
     );
   }
