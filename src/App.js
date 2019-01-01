@@ -4,6 +4,8 @@ import { MainContent } from "./MainContent/MainContent";
 
 export class App extends React.Component {
 
+  history = []
+
   constructor(props) {
     super(props);
 
@@ -21,6 +23,78 @@ export class App extends React.Component {
       colnames:["y0", "y1", "y2", "y3"],
       rownames:["x0", "x1", "x2", "x3"]
     };
+  }
+
+  copy = (src) => {
+    let target = {};
+    for (let prop in src) {
+      if (src.hasOwnProperty(prop)) {
+        target[prop] = src[prop] instanceof Array ? (src[prop][0] instanceof Array ? this.copyMultidimensionalArray(src[prop]) : src[prop].slice()) : src[prop];
+      }
+    }
+    return target;
+  }
+
+  copyMultidimensionalArray = (currentArray) => {
+    let newArray = [];
+
+    for (let i = 0; i < currentArray.length; i++)
+      newArray[i] = currentArray[i].slice();
+
+    return newArray;
+  }
+
+  undo = () => {
+    if(this.history[1]!=null){
+
+      const historyLength = this.history.length;
+
+      for(let i=0 ; i<historyLength-1 ; i++){
+        this.history[i]=this.history[i+1];
+      }
+
+      this.history[historyLength-1]=null;
+
+      const tmp = this.history[0];
+
+      let tmpRows = this.copyMultidimensionalArray(tmp.rows);
+
+      this.setState({
+        zoom:tmp.zoom,
+        top:tmp.top,
+        left:tmp.left,
+        x_name:tmp.x_name,
+        y_name:tmp.y_name,
+        graphType:tmp.graphType,
+        colors:tmp.colors.slice(),
+        rows:tmpRows,
+        nrows:tmp.nrows,
+        ncols:tmp.ncols,
+        colnames:tmp.colnames.slice(),
+        rownames:tmp.rownames.slice()
+      });
+    }
+  }
+
+  componentDidMount(){
+    let tmp = this.copy(this.state);
+    this.history = [tmp, null, null, null];
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    let tmp2 = this.copy(this.state);
+
+    if(JSON.stringify(this.history[0]) !== JSON.stringify(tmp2)){
+      const historyLength = this.history.length;
+
+      for(let i=historyLength-1 ; i>0 ; i--){
+        this.history[i]=this.history[i-1];
+      }
+
+      this.history[0]=tmp2;
+    }
+
+    tmp2 = {};
   }
 
   clearData = () => {
@@ -97,7 +171,7 @@ export class App extends React.Component {
 
   setValue = (r,c, val) => {
     let tmpRow = this.state.rows;
-    tmpRow[r][c] = val;
+    tmpRow[r][c] = parseInt(val);
 
     this.setState({
       rows: tmpRow
@@ -262,6 +336,8 @@ export class App extends React.Component {
           clearData={this.clearData}
           setColumnName={this.setColumnName}
           setRowName={this.setRowName}
+
+          undo={this.undo}
         />
         <MainContent
           zoom={this.state.zoom}
