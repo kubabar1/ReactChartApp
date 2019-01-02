@@ -138,6 +138,13 @@ export class MenuNav extends React.Component {
 					modalExportData={this.state.modalExportData}
 					toggle={this.toggleModalExportData}
 					setData={this.setData}
+
+					colors={this.props.colors}
+					rows={this.props.rows}
+					nrows={this.props.nrows}
+					ncols={this.props.ncols}
+					colnames={this.props.colnames}
+					rownames={this.props.rownames}
 				/>
 				<ModalImportData
 					modalImportData={this.state.modalImportData}
