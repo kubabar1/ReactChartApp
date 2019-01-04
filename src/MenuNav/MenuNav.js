@@ -87,11 +87,6 @@ export class MenuNav extends React.Component {
 		});
 	}
 
-	/*downloadData = () => {
-		var fileDownload = require('react-file-download');
-		fileDownload(this.props.data, 'graph_app.csv');
-	}*/
-
 	render() {
 			return (
 			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2 m-0 p-0">
@@ -145,6 +140,8 @@ export class MenuNav extends React.Component {
 					ncols={this.props.ncols}
 					colnames={this.props.colnames}
 					rownames={this.props.rownames}
+
+					chartName={this.props.chartName}
 				/>
 				<ModalImportData
 					modalImportData={this.state.modalImportData}

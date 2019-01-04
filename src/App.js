@@ -10,6 +10,7 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
+      chartName:null,
       zoom:50,
       top:0,
       left:0,
@@ -338,6 +339,8 @@ export class App extends React.Component {
           setRowName={this.setRowName}
 
           undo={this.undo}
+
+          chartName={this.state.chartName}
         />
         <MainContent
           zoom={this.state.zoom}

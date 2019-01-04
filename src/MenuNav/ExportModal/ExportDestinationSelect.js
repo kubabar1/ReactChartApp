@@ -5,6 +5,8 @@ import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import { CSVLink } from "react-csv";
 
+import db from "../../Firebase/MyDB.js";
+
 export class ExportDestinationSelect extends React.Component {
 
 	constructor(props) {
@@ -23,6 +25,33 @@ export class ExportDestinationSelect extends React.Component {
       [name]: value
     });
   }
+
+	saveDataInFirebase = (e) => {
+		const rows = this.props.rows;
+		const chartName = this.props.chartName;
+
+		if(chartName!=null){
+			let objArr = [];
+
+			rows.map((val, index) => {
+				objArr.push(Object.assign({}, val));
+			});
+
+			db.collection("charts").doc(chartName).set({
+		    	colors: this.props.colors,
+		    	colnames: this.props.colnames,
+		    	rownames: this.props.rownames,
+		    	nrows: this.props.nrows,
+		    	ncols: this.props.ncols,
+					rows: objArr
+			})
+			.catch((error) => {
+		    	console.error("Error writing document: ", error);
+			});
+
+		}
+		this.props.toggle(e);
+	}
 
   render() {
 
@@ -49,7 +78,7 @@ export class ExportDestinationSelect extends React.Component {
               <p className="pb-0 mb-0 pt-1">Device</p>
             </div>
           </CSVLink>
-          <div id="import_select_container" className="col-3 offset-2" onClick={() => this.props.selectExportDestination("firebase")}>
+          <div id="import_select_container" className="col-3 offset-2" onClick={this.saveDataInFirebase}>
             <div>
               <img src={require('../../firebase.png')} className="img-fluid"/>
             </div>
