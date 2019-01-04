@@ -54,15 +54,18 @@ export class ExportDestinationSelect extends React.Component {
 	}
 
   render() {
+		const chartName = this.props.chartName;
 
     const csvData = [
+			[this.props.nrows],
+			[this.props.ncols],
       [this.props.colors],
       [this.props.colnames],
       [this.props.rownames],
-      [this.props.rows],
-      [this.props.nrows],
-      [this.props.ncols]
+      [this.props.rows]
     ];
+
+		console.log(csvData);
 
     return (
       <div className="container col-10 offset-1">
@@ -70,7 +73,7 @@ export class ExportDestinationSelect extends React.Component {
           <h4>Select data export destination:</h4>
         </div>
         <div className="row">
-          <CSVLink data={csvData} filename='react_chart_app_data.csv' id="import_select_container" className="col-3 offset-2">
+          <CSVLink data={csvData} filename={chartName!=null ? chartName+".csv" : 'react_chart_app_data.csv'} id="import_select_container" className="col-3 offset-2">
             <div>
               <img src={require('../../hard_drive.png')} className="img-fluid"/>
             </div>
