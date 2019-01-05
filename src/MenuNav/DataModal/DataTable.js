@@ -13,6 +13,7 @@ export class DataTable extends React.Component {
 	  this.state = {
 		  modalDataInput:false
 	  };
+
   }
 
 	handleInputChange = (event) => {

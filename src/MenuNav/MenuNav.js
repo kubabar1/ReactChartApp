@@ -39,7 +39,6 @@ export class MenuNav extends React.Component {
 	}
 
 	toggleModalImportData = (e) => {
-		e.preventDefault();
 		this.setState({
 			modalImportData: !this.state.modalImportData
 		});
@@ -101,7 +100,7 @@ export class MenuNav extends React.Component {
 				<ModalData
 					modalData={this.state.modalData}
 					toggle={this.toggleData}
-					addData={this.addData}
+          setData={this.props.setData}
 
 					colors={this.props.colors}
 					rows={this.props.rows}
@@ -133,6 +132,7 @@ export class MenuNav extends React.Component {
 					modalExportData={this.state.modalExportData}
 					toggle={this.toggleModalExportData}
 					setData={this.setData}
+					data={this.props.data}
 
 					colors={this.props.colors}
 					rows={this.props.rows}
@@ -146,7 +146,7 @@ export class MenuNav extends React.Component {
 				<ModalImportData
 					modalImportData={this.state.modalImportData}
 					toggle={this.toggleModalImportData}
-					setData={this.setData}
+          setData={this.props.setData}
 				/>
 				<ModalHelp
 					modalHelp={this.state.modalHelp}
