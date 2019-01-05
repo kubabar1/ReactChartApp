@@ -13,11 +13,12 @@ export class App extends React.Component {
       zoom:50,
       top:0,
       left:0,
+      legend:false,
       data:{
         x_name:"",
         y_name:"",
-        chartName:null,
-        graphType:"ScatterChart",
+        chartName:"",
+        chartType:"Scatter",
         colors:["#000000","#000000","#000000","#000000"],
         rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
         nrows:4,
@@ -26,6 +27,39 @@ export class App extends React.Component {
         rownames:["x0", "x1", "x2", "x3"]
       }
     };
+  }
+
+  setLegendVisibility = (bool) => {
+    this.setState({
+      legend: bool
+    })
+  }
+
+  setXAxisName = (name) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          x_name: name
+      }
+    }))
+  }
+
+  setYAxisName = (name) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          y_name: name
+      }
+    }))
+  }
+
+  setChartName = (chartName) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          chartName: chartName
+      }
+    }))
   }
 
   setData = (data) => {
@@ -117,7 +151,7 @@ export class App extends React.Component {
           x_name:tmp.data.x_name,
           y_name:tmp.data.y_name,
           chartName:tmp.data.chartName,
-          graphType:tmp.data.graphType,
+          chartType:tmp.data.chartType,
           colors:tmp.data.colors.slice(),
           rows:tmpRows,
           nrows:tmp.data.nrows,
@@ -156,7 +190,7 @@ export class App extends React.Component {
         x_name:"",
         y_name:"",
         chartName:null,
-        graphType:"ScatterChart",
+        chartType:"Scatter",
         colors:[],
         rows:[],
         nrows:0,
@@ -228,6 +262,15 @@ export class App extends React.Component {
       data: {
           ...prevState.data,
           rows:tmpRow
+      }
+    }));
+  }
+
+  setChartType = (chartType) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          chartType:chartType
       }
     }));
   }
@@ -352,6 +395,8 @@ export class App extends React.Component {
           ncols={this.state.data.ncols}
           colnames={this.state.data.colnames}
           rownames={this.state.data.rownames}
+          chartType={this.state.data.chartType}
+          legend={this.state.legend}
 
           addRow={this.addRow}
           addCol ={this.addCol}
@@ -365,6 +410,12 @@ export class App extends React.Component {
           clearData={this.clearData}
           setColumnName={this.setColumnName}
           setRowName={this.setRowName}
+          setChartType={this.setChartType}
+          setChartName={this.setChartName}
+          setLegendVisibility={this.setLegendVisibility}
+
+          setXAxisName={this.setXAxisName}
+          setYAxisName={this.setYAxisName}
 
           undo={this.undo}
 
@@ -380,9 +431,9 @@ export class App extends React.Component {
           moveBottom={this.moveBottom}
           moveLeft={this.moveLeft}
           moveRight={this.moveRight}
-          graphType={this.state.graphType}
-          rows={this.state.data.rows}
+          chartType={this.state.data.chartType}
           colors={this.state.data.colors}
+          data={this.state.data}
         />
       </main>
     );

@@ -30,7 +30,7 @@ export class ExportDestinationSelect extends React.Component {
 		const rows = this.props.data.rows;
 		const chartName = this.props.data.chartName;
 
-		if(chartName!=null){
+		if(chartName!=null && chartName!=""){
 			let objArr = [];
 
 			rows.map((val, index) => {
@@ -41,7 +41,7 @@ export class ExportDestinationSelect extends React.Component {
 					x_name:this.props.data.x_name,
         	y_name:this.props.data.y_name,
         	chartName:this.props.data.chartName,
-        	graphType:this.props.data.graphType,
+        	chartType:this.props.data.chartType,
 		    	colors: this.props.data.colors,
 		    	colnames: this.props.data.colnames,
 		    	rownames: this.props.data.rownames,
@@ -64,7 +64,7 @@ export class ExportDestinationSelect extends React.Component {
 			[this.props.data.x_name],
 			[this.props.data.y_name],
       [this.props.data.chartName],
-      [this.props.data.graphType],
+      [this.props.data.chartType],
 
 			[this.props.data.nrows],
 			[this.props.data.ncols],

@@ -19,12 +19,9 @@ a {
   font-size: 40px;
 }
 
-
-
 @media(min-width:768px){.menu_item_container{font-size: 0.9vmax;} #nav_menu_header{font-size: 0.9vmax;}}
 @media(min-width:850px){.menu_item_container{font-size: 1vmax;} #nav_menu_header{font-size: 1vmax;}}
 @media(min-width:1200px){.menu_item_container{font-size: 1vmax;} #nav_menu_header{font-size: 1vmax;}}
-
 
 #move_buttons_container {
   font-size: 20px;
@@ -53,8 +50,4 @@ a {
 .menu_item_container a:hover{
   text-decoration: none;
   color: #ffffff;
-}
-
-#chart-container{
-  mix-blend-mode: multiply;
 }

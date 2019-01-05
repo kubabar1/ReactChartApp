@@ -33,7 +33,7 @@ export class DeviceImport extends React.Component {
 		const x_name = data[0][0];
 		const y_name = data[1][0];
 		const chartName = data[2][0];
-		const graphType = data[3][0];
+		const chartType = data[3][0];
 
     const nrows = parseInt(data[4][0]);
     const ncols = parseInt(data[5][0]);
@@ -102,7 +102,7 @@ export class DeviceImport extends React.Component {
 			x_name:x_name,
 			y_name:y_name,
 			chartName:chartName,
-			graphType:graphType,
+			chartType:chartType,
 			colors:colors,
 			rows:rows,
 			nrows:nrows,

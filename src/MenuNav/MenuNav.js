@@ -1,11 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/styles.css";
+import "./styles.css";
 import { MenuItem } from "./MenuItem.js";
 import { MenuHeader } from "./MenuHeader.js";
 import { ModalData } from "./DataModal/ModalData.js";
-import { ModalColorInput } from "./ModalColorInput.js";
-import { ModalSettings } from "./ModalSettings.js";
+import { ModalSettings } from "./SettingsModal/ModalSettings.js";
 import { ModalExportData } from "./ExportModal/ModalExportData.js";
 import { ModalImportData } from "./ImportModal/ModalImportData.js";
 import { ModalHelp } from "./ModalHelp.js";
@@ -79,11 +78,8 @@ export class MenuNav extends React.Component {
 		});
 	}
 
-	setGraphType = (graphType) => {
-		this.props.setGraphType(graphType);
-		this.setState({
-			modalChangeGraphType: !this.state.modalChangeGraphType
-		});
+	setChartType = (chartType) => {
+		this.props.setGraphType(chartType);
 	}
 
 	render() {
@@ -125,8 +121,14 @@ export class MenuNav extends React.Component {
 				<ModalSettings
 					modalChangeGraphType={this.state.settings}
 					toggle={this.toggleSettings}
-					graphType={this.props.graphType}
-					setGraphType={this.setGraphType}
+					chartType={this.props.chartType}
+          setChartType={this.props.setChartType}
+					setChartName={this.props.setChartName}
+					data={this.props.data}
+					setXAxisName={this.props.setXAxisName}
+					setYAxisName={this.props.setYAxisName}
+					setLegendVisibility={this.props.setLegendVisibility}
+					legend={this.props.legend}
 				/>
 				<ModalExportData
 					modalExportData={this.state.modalExportData}
