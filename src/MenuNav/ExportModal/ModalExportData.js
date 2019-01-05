@@ -47,6 +47,7 @@ export class ModalExportData extends React.Component {
 							colnames={this.props.colnames}
 							rownames={this.props.rownames}
 							selectExportDestination={this.selectExportDestination}
+							data={this.props.data}
 
 							chartName={this.props.chartName}
 

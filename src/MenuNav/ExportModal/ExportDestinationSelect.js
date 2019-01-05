@@ -27,8 +27,8 @@ export class ExportDestinationSelect extends React.Component {
   }
 
 	saveDataInFirebase = (e) => {
-		const rows = this.props.rows;
-		const chartName = this.props.chartName;
+		const rows = this.props.data.rows;
+		const chartName = this.props.data.chartName;
 
 		if(chartName!=null){
 			let objArr = [];
@@ -38,11 +38,15 @@ export class ExportDestinationSelect extends React.Component {
 			});
 
 			db.collection("charts").doc(chartName).set({
-		    	colors: this.props.colors,
-		    	colnames: this.props.colnames,
-		    	rownames: this.props.rownames,
-		    	nrows: this.props.nrows,
-		    	ncols: this.props.ncols,
+					x_name:this.props.data.x_name,
+        	y_name:this.props.data.y_name,
+        	chartName:this.props.data.chartName,
+        	graphType:this.props.data.graphType,
+		    	colors: this.props.data.colors,
+		    	colnames: this.props.data.colnames,
+		    	rownames: this.props.data.rownames,
+		    	nrows: this.props.data.nrows,
+		    	ncols: this.props.data.ncols,
 					rows: objArr
 			})
 			.catch((error) => {
@@ -57,15 +61,18 @@ export class ExportDestinationSelect extends React.Component {
 		const chartName = this.props.chartName;
 
     const csvData = [
-			[this.props.nrows],
-			[this.props.ncols],
-      [this.props.colors],
-      [this.props.colnames],
-      [this.props.rownames],
-      [this.props.rows]
-    ];
+			[this.props.data.x_name],
+			[this.props.data.y_name],
+      [this.props.data.chartName],
+      [this.props.data.graphType],
 
-		console.log(csvData);
+			[this.props.data.nrows],
+			[this.props.data.ncols],
+      [this.props.data.colors],
+      [this.props.data.colnames],
+      [this.props.data.rownames],
+      [this.props.data.rows]
+    ];
 
     return (
       <div className="container col-10 offset-1">

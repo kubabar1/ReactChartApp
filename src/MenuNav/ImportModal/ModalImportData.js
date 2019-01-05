@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import {DataSourceSelect} from "./DataSourceSelect.js"
+import {DeviceImport} from "./DeviceImport.js"
+import {FirebaseImport} from "./FirebaseImport.js"
 
 export class ModalImportData extends React.Component {
 
@@ -29,7 +31,6 @@ export class ModalImportData extends React.Component {
 		this.setState({
 			importSource:sourceOfImport
 		});
-		console.log(sourceOfImport);
 	}
 
   loadData = (data) => {
@@ -46,15 +47,32 @@ export class ModalImportData extends React.Component {
   }
 
   render() {
+		const importSource = this.state.importSource;
+
     return (
       <div>
-        <Modal isOpen={this.props.modalImportData} toggle={this.props.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.props.toggle}>Import data</ModalHeader>
+        <Modal isOpen={this.props.modalImportData} toggle={(e) => {this.selectImportSource(null); this.props.toggle(e);}} className={this.props.className}>
+          <ModalHeader toggle={(e) => {this.selectImportSource(null); this.props.toggle(e);}}>Import data</ModalHeader>
           <ModalBody>
-						<DataSourceSelect selectImportSource={this.selectImportSource}/>
+						{importSource!=null ?
+							(
+								importSource=="device" ?
+								<DeviceImport
+			          	setData={this.props.setData}
+									toggle={this.props.toggle}
+									selectImportSource={this.selectImportSource}
+								/> :
+								<FirebaseImport
+									setData={this.props.setData}
+									toggle={this.props.toggle}
+									selectImportSource={this.selectImportSource}
+								/>
+							) :
+							<DataSourceSelect selectImportSource={this.selectImportSource}/>
+						}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
+            <Button color="secondary" onClick={(e) => {this.selectImportSource(null); this.props.toggle(e); }}>Cancel</Button>
           </ModalFooter>
         </Modal>
       </div>

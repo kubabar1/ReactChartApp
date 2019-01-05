@@ -16,18 +16,11 @@ export class Graph extends React.Component {
   }
 
   render() {
-    const rows = this.props.rows;
-    let data = [['x', 'y']];
-
-    rows.forEach((val, index, theArray) => {
-      for(let i=0; i<val.length; i++){
-        data.push([index, parseInt(val[i])])
-      }
-    });
+    
 
     return (
       <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:600, top:this.props.top, left:this.props.left}}>
-        {this.renderChart(data)}
+        {this.renderChart()}
       </div>
     );
   }

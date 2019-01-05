@@ -10,30 +10,78 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
-      chartName:null,
       zoom:50,
       top:0,
       left:0,
-      x_name:null,
-      y_name:null,
-      graphType:"ScatterChart",
-      colors:["#000000","#000000","#000000","#000000"],
-      rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-      nrows:4,
-      ncols:4,
-      colnames:["y0", "y1", "y2", "y3"],
-      rownames:["x0", "x1", "x2", "x3"]
+      data:{
+        x_name:"",
+        y_name:"",
+        chartName:null,
+        graphType:"ScatterChart",
+        colors:["#000000","#000000","#000000","#000000"],
+        rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+        nrows:4,
+        ncols:4,
+        colnames:["y0", "y1", "y2", "y3"],
+        rownames:["x0", "x1", "x2", "x3"]
+      }
     };
   }
 
-  copy = (src) => {
-    let target = {};
-    for (let prop in src) {
-      if (src.hasOwnProperty(prop)) {
-        target[prop] = src[prop] instanceof Array ? (src[prop][0] instanceof Array ? this.copyMultidimensionalArray(src[prop]) : src[prop].slice()) : src[prop];
+  setData = (data) => {
+    this.setState({
+      data:data
+    });
+  }
+
+  setColNames = (arr) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          colnames: arr
       }
-    }
-    return target;
+    }))
+  }
+
+  setRowNames = (arr) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          rownames: arr
+      }
+    }))
+  }
+
+  setColors = (arr) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          colors: arr
+      }
+    }))
+  }
+
+  setSize = (nr, nc) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          nrows:nr,
+          ncols:nc
+      }
+    }))
+  }
+
+  setRows = (arr) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          rows: arr
+      }
+    }))
+  }
+
+  copy = (src) => {
+    return JSON.parse(JSON.stringify(src));
   }
 
   copyMultidimensionalArray = (currentArray) => {
@@ -58,21 +106,25 @@ export class App extends React.Component {
 
       const tmp = this.history[0];
 
-      let tmpRows = this.copyMultidimensionalArray(tmp.rows);
+      let tmpRows = this.copyMultidimensionalArray(tmp.data.rows);
 
       this.setState({
         zoom:tmp.zoom,
         top:tmp.top,
         left:tmp.left,
-        x_name:tmp.x_name,
-        y_name:tmp.y_name,
-        graphType:tmp.graphType,
-        colors:tmp.colors.slice(),
-        rows:tmpRows,
-        nrows:tmp.nrows,
-        ncols:tmp.ncols,
-        colnames:tmp.colnames.slice(),
-        rownames:tmp.rownames.slice()
+        data:
+        {
+          x_name:tmp.data.x_name,
+          y_name:tmp.data.y_name,
+          chartName:tmp.data.chartName,
+          graphType:tmp.data.graphType,
+          colors:tmp.data.colors.slice(),
+          rows:tmpRows,
+          nrows:tmp.data.nrows,
+          ncols:tmp.data.ncols,
+          colnames:tmp.data.colnames.slice(),
+          rownames:tmp.data.rownames.slice()
+        }
       });
     }
   }
@@ -100,13 +152,21 @@ export class App extends React.Component {
 
   clearData = () => {
     if(window.confirm("Do you want to delete all data?")){
-      this.setState({
+      const data = {
+        x_name:"",
+        y_name:"",
+        chartName:null,
+        graphType:"ScatterChart",
         colors:[],
         rows:[],
         nrows:0,
         ncols:0,
         colnames:[],
         rownames:[]
+      };
+
+      this.setState({
+        data:data
       })
     }
   }
@@ -115,84 +175,80 @@ export class App extends React.Component {
     let actualSize = this.size();
     this.setSize(actualSize[0]+1, actualSize[1]);
 
-    let tmpRowNames = [...this.state.rownames, rowname];
-    let tmpRows = [...this.state.rows, row];
+    let tmpRowNames = [...this.state.data.rownames, rowname];
+    let tmpRows = [...this.state.data.rows, row];
 
-    this.setState({
-      rownames: [...this.state.rownames, rowname],
-      rows: [...this.state.rows, row]
-    })
+    this.setState(prevState => ({
+      data:{
+        ...prevState.data,
+        rownames: [...this.state.data.rownames, rowname],
+        rows: [...this.state.data.rows, row]
+      }
+    }))
   }
 
   addCol = (colname, arr) => {
     let actualSize = this.size();
     this.setSize(actualSize[0], actualSize[1]+1);
 
-    this.setState({
-      colnames: [...this.state.colnames, colname],
-      colors:  [...this.state.colors, "#000000"]
-    })
+    this.setState(prevState => ({
+      data:{
+        ...prevState.data,
+        colnames: [...this.state.data.colnames, colname],
+        colors:  [...this.state.data.colors, "#000000"]
+      }
+    }))
 
     const columnsNumber = this.size()[1];
 
     let tmp;
 
-    this.state.rows.forEach((item, index) => {
-        tmp = this.state.rows;
+    this.state.data.rows.forEach((item, index) => {
+        tmp = this.state.data.rows;
         tmp[index] = [...item, arr[index]]
-        this.setState({
-          rows:tmp
-        });
+        this.setState(prevState => ({
+          data: {
+              ...prevState.data,
+              rows:tmp
+          }
+        }));
       }
     )
   }
 
   size = () => {
-    return [this.state.nrows, this.state.ncols];
-  }
-
-  setSize = (nr, nc) => {
-    this.setState({
-      nrows:nr,
-      ncols:nc
-    });
-  }
-
-  setColNames = (arr) => {
-    this.setState({
-      colnames:arr
-    });
-  }
-
-  setRowNames = (arr) => {
-    this.setState({
-      rownames:arr
-    });
+    return [this.state.data.nrows, this.state.data.ncols];
   }
 
   setValue = (r,c, val) => {
-    let tmpRow = this.state.rows;
+    let tmpRow = this.state.data.rows;
     tmpRow[r][c] = parseInt(val);
 
-    this.setState({
-      rows: tmpRow
-    });
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          rows:tmpRow
+      }
+    }));
   }
 
   value = (r,c) => {
-    return this.state.rows[r][c]
+    return this.state.data.rows[r][c]
   }
 
   handleColorChange = (index, event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    let tmpColors = this.state.colors;
+    let tmpColors = this.state.data.colors;
     tmpColors[index] = value;
 
-    this.setState({
-      colors: tmpColors
-    });
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          colors:tmpColors
+      }
+    }));
   }
 
   zoomIn = () => {
@@ -255,53 +311,30 @@ export class App extends React.Component {
       }
   }
 
-  addData = (x,y) => {
-    this.setState({
-      data:this.state.data.concat([[parseInt(x),parseInt(y)]])
-    });
-  }
 
-  setData = (data) => {
-    this.setState({
-      data:data
-    });
-  }
-
-  removeData = () => {
-    this.setState({
-      data:[['x', 'y']]
-    });
-  }
-
-  setColor = (color_str) => {
-    this.setState({
-      color:color_str
-    });
-  }
-
-  setGraphType = (graphType) => {
-    this.removeData();
-    this.setState({
-      graphType:graphType
-    });
-  }
 
   setColumnName = (i, name) => {
-    let tmpColnames = this.state.colnames;
+    let tmpColnames = this.state.data.colnames;
     tmpColnames[i] = name;
 
-    this.setState({
-      colnames: tmpColnames
-    });
+    this.setState(prevState => ({
+      data:{
+        ...prevState.data,
+        colnames: tmpColnames
+      }
+    }));
   }
 
   setRowName = (i, name) => {
-    let tmpRowNames = this.state.rownames;
+    let tmpRowNames = this.state.data.rownames;
     tmpRowNames[i] = name;
 
-    this.setState({
-      rownames: tmpRowNames
-    });
+    this.setState(prevState => ({
+      data:{
+        ...prevState.data,
+        rownames: tmpRowNames
+      }
+    }));
   }
 
 
@@ -309,21 +342,16 @@ export class App extends React.Component {
     return (
       <main className="row m-0 p-0">
         <MenuNav
-          addData={this.addData}
-          removeData={this.removeData}
-          color={this.state.color}
-          setColor={this.setColor}
-          graphType={this.state.graphType}
-          setGraphType={this.setGraphType}
+          setColors={this.setColors}
           data={this.state.data}
           setData={this.setData}
 
-          colors={this.state.colors}
-          rows={this.state.rows}
-          nrows={this.state.nrows}
-          ncols={this.state.ncols}
-          colnames={this.state.colnames}
-          rownames={this.state.rownames}
+          colors={this.state.data.colors}
+          rows={this.state.data.rows}
+          nrows={this.state.data.nrows}
+          ncols={this.state.data.ncols}
+          colnames={this.state.data.colnames}
+          rownames={this.state.data.rownames}
 
           addRow={this.addRow}
           addCol ={this.addCol}
@@ -353,8 +381,8 @@ export class App extends React.Component {
           moveLeft={this.moveLeft}
           moveRight={this.moveRight}
           graphType={this.state.graphType}
-          rows={this.state.rows}
-          colors={this.state.colors}
+          rows={this.state.data.rows}
+          colors={this.state.data.colors}
         />
       </main>
     );
