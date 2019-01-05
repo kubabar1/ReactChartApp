@@ -57,8 +57,6 @@ export class FirebaseImport extends React.Component {
 		});
 
 		this.readChartsFromFirebase();
-		this.props.selectImportSource(null);
-		this.props.toggle();
 	}
 
 	handleLoad = (data) => {
@@ -77,7 +75,7 @@ export class FirebaseImport extends React.Component {
 			x_name:data.x_name,
 			y_name:data.y_name,
 			chartName:data.chartName,
-			graphType:data.graphType,
+			chartType:data.chartType,
 			colors:data.colors,
 			rows:tmpRows,
 			nrows:data.nrows,

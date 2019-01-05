@@ -40,17 +40,9 @@ export class ModalExportData extends React.Component {
           <ModalHeader toggle={this.props.toggle}>Export data</ModalHeader>
           <ModalBody>
 						<ExportDestinationSelect
-							colors={this.props.colors}
-							rows={this.props.rows}
-							nrows={this.props.nrows}
-							ncols={this.props.ncols}
-							colnames={this.props.colnames}
-							rownames={this.props.rownames}
 							selectExportDestination={this.selectExportDestination}
 							data={this.props.data}
-
 							chartName={this.props.chartName}
-
 							toggle={this.props.toggle}
 						/>
           </ModalBody>

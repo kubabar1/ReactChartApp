@@ -17,7 +17,7 @@ export class App extends React.Component {
         x_name:"",
         y_name:"",
         chartName:null,
-        graphType:"ScatterChart",
+        chartType:"Scatter",
         colors:["#000000","#000000","#000000","#000000"],
         rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
         nrows:4,
@@ -117,7 +117,7 @@ export class App extends React.Component {
           x_name:tmp.data.x_name,
           y_name:tmp.data.y_name,
           chartName:tmp.data.chartName,
-          graphType:tmp.data.graphType,
+          chartType:tmp.data.chartType,
           colors:tmp.data.colors.slice(),
           rows:tmpRows,
           nrows:tmp.data.nrows,
@@ -156,7 +156,7 @@ export class App extends React.Component {
         x_name:"",
         y_name:"",
         chartName:null,
-        graphType:"ScatterChart",
+        chartType:"Scatter",
         colors:[],
         rows:[],
         nrows:0,
@@ -228,6 +228,15 @@ export class App extends React.Component {
       data: {
           ...prevState.data,
           rows:tmpRow
+      }
+    }));
+  }
+
+  setChartType = (chartType) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          chartType:chartType
       }
     }));
   }
@@ -352,6 +361,7 @@ export class App extends React.Component {
           ncols={this.state.data.ncols}
           colnames={this.state.data.colnames}
           rownames={this.state.data.rownames}
+          chartType={this.state.data.chartType}
 
           addRow={this.addRow}
           addCol ={this.addCol}
@@ -365,6 +375,7 @@ export class App extends React.Component {
           clearData={this.clearData}
           setColumnName={this.setColumnName}
           setRowName={this.setRowName}
+          setChartType={this.setChartType}
 
           undo={this.undo}
 
@@ -380,9 +391,9 @@ export class App extends React.Component {
           moveBottom={this.moveBottom}
           moveLeft={this.moveLeft}
           moveRight={this.moveRight}
-          graphType={this.state.graphType}
-          rows={this.state.data.rows}
+          chartType={this.state.data.chartType}
           colors={this.state.data.colors}
+          data={this.state.data}
         />
       </main>
     );
