@@ -123,6 +123,12 @@ export class MenuNav extends React.Component {
 					toggle={this.toggleSettings}
 					chartType={this.props.chartType}
           setChartType={this.props.setChartType}
+					setChartName={this.props.setChartName}
+					data={this.props.data}
+					setXAxisName={this.props.setXAxisName}
+					setYAxisName={this.props.setYAxisName}
+					setLegendVisibility={this.props.setLegendVisibility}
+					legend={this.props.legend}
 				/>
 				<ModalExportData
 					modalExportData={this.state.modalExportData}

@@ -11,8 +11,7 @@ export class ModalSettings extends React.Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-			modalColorInput:false,
-      chartType:null
+			modalColorInput:false
 	  };
 	}
 
@@ -32,14 +31,8 @@ export class ModalSettings extends React.Component {
     });
   }
 
-	handleChartInputChange = (event) => {
-		this.handleInputChange(event);
-
-		this.props.setChartType(event.target.value);
-	}
-
 	renderExampleChart = () =>{
-		const chartType=this.state.chartType;
+		const chartType=this.props.data.chartType;
 		if(chartType=="Scatter"){
 			return(
 				<VictoryChart
@@ -129,7 +122,11 @@ export class ModalSettings extends React.Component {
 	}
 
   render() {
-		const chartType = this.state.chartType;
+		const chartType = this.props.data.chartType;
+		const chartName = this.props.data.chartName;
+		const x_name = this.props.data.x_name;
+		const y_name = this.props.data.y_name;
+		const legend = this.props.legend;
 
     return (
       <div>
@@ -138,24 +135,24 @@ export class ModalSettings extends React.Component {
           <ModalBody>
             <div className="form-group">
               <label>Chart title:</label>
-              <input type="text" className="form-control"/>
+              <input type="text" className="form-control" value={chartName} onChange={(e)=>this.props.setChartName(e.target.value)}/>
             </div>
             <div className="form-group">
               <label>X-axis title:</label>
-              <input type="text" className="form-control"/>
+              <input type="text" className="form-control" value={x_name} onChange={(e)=>this.props.setXAxisName(e.target.value)}/>
             </div>
             <div className="form-group">
               <label>Y-axis title:</label>
-              <input type="text" className="form-control"/>
+              <input type="text" className="form-control" value={y_name} onChange={(e)=>this.props.setYAxisName(e.target.value)}/>
             </div>
             <div className="form-group form-check">
               <label className="form-check-label">
-                <input className="form-check-input" type="checkbox"/> Legend
+                <input className="form-check-input" type="checkbox" checked={legend} onChange={(e)=>this.props.setLegendVisibility(e.target.checked)}/> Legend
               </label>
             </div>
             <div className="form-group">
               <label>Chart type:</label>
-              <select className="form-control" name="chartType" value={this.state.chartType} onChange={this.handleChartInputChange}>
+              <select className="form-control" name="chartType" value={chartType} onChange={(e)=>this.props.setChartType(e.target.value)}>
                 <option value="Scatter">Scatter</option>
                 <option value="BarVertical">Bar vertical</option>
                 <option value="BarHorizontal">Bar horizontal</option>

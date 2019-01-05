@@ -30,7 +30,7 @@ export class ExportDestinationSelect extends React.Component {
 		const rows = this.props.data.rows;
 		const chartName = this.props.data.chartName;
 
-		if(chartName!=null){
+		if(chartName!=null && chartName!=""){
 			let objArr = [];
 
 			rows.map((val, index) => {

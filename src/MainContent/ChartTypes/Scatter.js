@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles.css";
 import { VictoryChart} from "victory-chart";
-import { VictoryTheme, VictoryScatter } from "victory";
+import { VictoryTheme, VictoryScatter, VictoryLabel } from "victory";
 
 export class Scatter extends React.Component {
 
@@ -22,6 +22,7 @@ export class Scatter extends React.Component {
       <VictoryChart
         theme={VictoryTheme.material}
       >
+        <VictoryLabel text={this.props.data.chartName} x={180} y={30} textAnchor="middle"/>
         <VictoryScatter
           style={{ data: { fill: "#c43a31" } }}
           size={5}

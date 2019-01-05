@@ -13,10 +13,11 @@ export class App extends React.Component {
       zoom:50,
       top:0,
       left:0,
+      legend:false,
       data:{
         x_name:"",
         y_name:"",
-        chartName:null,
+        chartName:"",
         chartType:"Scatter",
         colors:["#000000","#000000","#000000","#000000"],
         rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
@@ -26,6 +27,39 @@ export class App extends React.Component {
         rownames:["x0", "x1", "x2", "x3"]
       }
     };
+  }
+
+  setLegendVisibility = (bool) => {
+    this.setState({
+      legend: bool
+    })
+  }
+
+  setXAxisName = (name) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          x_name: name
+      }
+    }))
+  }
+
+  setYAxisName = (name) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          y_name: name
+      }
+    }))
+  }
+
+  setChartName = (chartName) => {
+    this.setState(prevState => ({
+      data: {
+          ...prevState.data,
+          chartName: chartName
+      }
+    }))
   }
 
   setData = (data) => {
@@ -362,6 +396,7 @@ export class App extends React.Component {
           colnames={this.state.data.colnames}
           rownames={this.state.data.rownames}
           chartType={this.state.data.chartType}
+          legend={this.state.legend}
 
           addRow={this.addRow}
           addCol ={this.addCol}
@@ -376,6 +411,11 @@ export class App extends React.Component {
           setColumnName={this.setColumnName}
           setRowName={this.setRowName}
           setChartType={this.setChartType}
+          setChartName={this.setChartName}
+          setLegendVisibility={this.setLegendVisibility}
+
+          setXAxisName={this.setXAxisName}
+          setYAxisName={this.setYAxisName}
 
           undo={this.undo}
 
