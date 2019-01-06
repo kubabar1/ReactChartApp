@@ -9,6 +9,7 @@ export class Pie extends React.Component {
   renderChart = () => {
     const rows = this.props.data.rows;
     const colnames = this.props.data.colnames;
+    const rownames = this.props.data.rownames;
 
     let dataArray = [];
 
@@ -25,7 +26,7 @@ export class Pie extends React.Component {
     return(
         <div>
           <h4>{this.props.data.chartName}</h4>
-          <VictoryPie colorScale={this.props.data.colors} data={dataArray} radius={110} height={300} />
+          <VictoryPie colorScale={this.props.data.colors} data={dataArray} radius={110} height={300}/>
         </div>
     );
   }

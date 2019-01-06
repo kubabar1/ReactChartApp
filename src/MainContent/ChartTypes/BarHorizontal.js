@@ -2,19 +2,21 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles.css";
 import { VictoryChart} from "victory-chart";
-import { VictoryTheme, VictoryBar, VictoryLabel, VictoryAxis } from "victory";
+import { VictoryTheme, VictoryBar, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
 
 export class BarHorizontal extends React.Component {
 
   renderChart = () => {
     const rows = this.props.data.rows;
     const colors = this.props.data.colors;
+    const colnames = this.props.data.colnames;
+    const rownames = this.props.data.rownames;
 
     let dataArray = [];
 
     rows.forEach((item, i)=>{
       item.forEach((sub, j)=>{
-        dataArray.push({x:j, y:sub, fill:colors[j]});
+        dataArray.push({x:j, y:sub, fill:colors[j], label:rownames[i]+", "+colnames[j]});
       })
     });
 
@@ -35,6 +37,7 @@ export class BarHorizontal extends React.Component {
               opacity: (d) => d.opacity
             }
           }}
+          labelComponent={<VictoryTooltip/>}
         />
       </VictoryChart>
     );
