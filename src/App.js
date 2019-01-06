@@ -20,7 +20,7 @@ export class App extends React.Component {
         chartName:"",
         chartType:"Scatter",
         colors:["#000000","#000000","#000000","#000000"],
-        rows:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+        rows:[[0,1,2,3],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
         nrows:4,
         ncols:4,
         colnames:["y0", "y1", "y2", "y3"],

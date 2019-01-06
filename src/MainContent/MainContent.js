@@ -12,6 +12,56 @@ import { Move } from "./Move.js";
 export class MainContent extends React.Component {
 
 
+  renderChart = () => {
+    const chartType = this.props.chartType;
+
+    let tmp;
+
+    if(chartType == "Scatter"){
+      tmp=<Scatter
+        zoom={this.props.zoom}
+        top={this.props.top}
+        left={this.props.left}
+        color={this.props.color}
+        data={this.props.data}
+      />;
+    }else if(chartType == "Pie"){
+      tmp=<Pie
+        zoom={this.props.zoom}
+        top={this.props.top}
+        left={this.props.left}
+        color={this.props.color}
+        data={this.props.data}
+      />;
+    }else if(chartType == "BarVertical"){
+      tmp=<BarVertical
+        zoom={this.props.zoom}
+        top={this.props.top}
+        left={this.props.left}
+        color={this.props.color}
+        data={this.props.data}
+      />;
+    }else if(chartType == "BarHorizontal"){
+      tmp=<BarHorizontal
+        zoom={this.props.zoom}
+        top={this.props.top}
+        left={this.props.left}
+        color={this.props.color}
+        data={this.props.data}
+      />;
+    }else if(chartType == "Line"){
+      tmp=<Line
+        zoom={this.props.zoom}
+        top={this.props.top}
+        left={this.props.left}
+        color={this.props.color}
+        data={this.props.data}
+      />;
+    }
+
+    return(tmp);
+  }
+
 
   render() {
     const chartType = this.props.chartType;
@@ -19,19 +69,8 @@ export class MainContent extends React.Component {
     return (
       <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         <div className="row">
-          <div id="content-main-container" className="col-10 mt-5 mb-5" style={{height:600}}>
-            {
-              (chartType == "Scatter") ?
-                <Scatter
-                  zoom={this.props.zoom}
-                  top={this.props.top}
-                  left={this.props.left}
-                  color={this.props.color}
-                  chartType={this.props.chartType}
-                  data={this.props.data}
-                />
-              : ""
-            }
+          <div id="content-main-container" className="col-10 mt-5 mb-5" >
+            {this.renderChart()}
           </div>
           <div id="zoom_container" className="col-2">
             <Zoom
