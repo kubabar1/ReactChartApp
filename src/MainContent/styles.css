@@ -1,3 +1,14 @@
 #chart-container{
   mix-blend-mode: multiply;
 }
+
+.legend-color-sq{
+  height:20px;
+  width:20px;
+  border-radius: 25px;
+}
+
+#legend{
+  max-height:300px;
+  overflow-y: auto;
+}

@@ -12,12 +12,11 @@ export class Zoom extends React.Component {
 
   render() {
     return (
-      <div id="zoom_icon_container" className="col-md-9 mx-auto text-center py-5">
-        <div className="">
+      <div id="zoom_icon_container" className="mx-auto text-center py-5">
+        <div className="row container">
           <a href="#" onClick={this.handleZoomIn}>
-            <i className="fas fa-search-plus" />
+            <i className="fas fa-search-plus mr-3" />
           </a>
-          <br />
           <a href="#" onClick={this.props.zoomOut}>
             <i className="fas fa-search-minus" />
           </a>

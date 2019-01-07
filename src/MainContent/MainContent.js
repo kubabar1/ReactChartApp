@@ -8,6 +8,7 @@ import { Line } from "./ChartTypes/Line.js";
 import { Pie } from "./ChartTypes/Pie.js";
 import { Zoom } from "./Zoom.js";
 import { Move } from "./Move.js";
+import { Legend } from "./Legend.js";
 
 export class MainContent extends React.Component {
 
@@ -77,6 +78,7 @@ export class MainContent extends React.Component {
               zoomIn={this.props.zoomIn}
               zoomOut={this.props.zoomOut}
             />
+            <Legend/>
           </div>
         </div>
         <div id="move_buttons_container" className="row col-10">
