@@ -116,15 +116,32 @@ export class DeviceImport extends React.Component {
 		this.props.toggle();
   }
 
+	loadCSV = (data, filename) => {
+		try{
+			this.setState({message:null});
+			this.handleCSVLoad(data, filename);
+		}catch(error){
+			this.setState({message:error});
+		}
+	}
+
   render() {
+		const message = this.state.message;
+
     return (
       <div className="custom-file">
         <CSVReader
           cssInputClass="custom-file-input"
           cssClass="csv-reader-input"
-          onFileLoaded={this.handleCSVLoad}
+          onFileLoaded={this.loadCSV}
           inputId="csvChartDataFile"
         />
+				{
+					message ? [
+					<div key="error-message" className="alert alert-danger mt-4" role="alert">
+						{"CSV load error: "+message}
+					</div>] : ""
+				}
       </div>
     );
   }
