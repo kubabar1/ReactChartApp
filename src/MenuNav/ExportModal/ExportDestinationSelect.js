@@ -12,19 +12,9 @@ export class ExportDestinationSelect extends React.Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-
+			message:null
 	  };
 	}
-
-	handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
 
 	saveDataInFirebase = (e) => {
 		const rows = this.props.data.rows;
@@ -53,12 +43,19 @@ export class ExportDestinationSelect extends React.Component {
 		    	console.error("Error writing document: ", error);
 			});
 
+			this.setState({messge:null});
+			this.props.toggle(e);
+		}else{
+				console.log("test")
+			this.setState({message:"If you want to export data to firebase, you must enter the name of the chart"});
 		}
-		this.props.toggle(e);
 	}
 
   render() {
 		const chartName = this.props.chartName;
+		const message = this.state.message;
+
+		console.log(message)
 
     const csvData = [
 			[this.props.data.x_name],
@@ -97,6 +94,12 @@ export class ExportDestinationSelect extends React.Component {
             </div>
           </div>
         </div>
+				{
+					message ? [
+					<div key="error-message" className="alert alert-danger mt-4" role="alert">
+						{message}
+					</div>] : ""
+				}
       </div>
     );
   }

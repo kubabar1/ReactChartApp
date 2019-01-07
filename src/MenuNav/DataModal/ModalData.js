@@ -12,8 +12,15 @@ export class ModalData extends React.Component {
 	  this.state = {
 			modalDataInput:false,
 			x_input:null,
-			y_input:null
+			y_input:null,
+			message:null
 	  };
+	}
+
+	showMessage = (message) => {
+		this.setState({
+			message:message
+		});
 	}
 
 	handleInputChange = (event) => {
@@ -42,6 +49,8 @@ export class ModalData extends React.Component {
 	}
 
   render() {
+		const message = this.state.message;
+
     return (
       <div>
         <Modal isOpen={this.props.modalData} toggle={this.props.toggle} size="lg">
@@ -68,7 +77,14 @@ export class ModalData extends React.Component {
 			          handleColorChange={this.props.handleColorChange}
 								setColumnName={this.props.setColumnName}
 								setRowName={this.props.setRowName}
+								showMessage={this.showMessage}
 							/>
+							{
+								message ? [
+								<div key="error-message" className="alert alert-danger" role="alert">
+							  	{message}
+								</div>] : ""
+							}
 							<div className="row pt-3 pl-3">
 								<button type="button" className="btn btn-outline-primary" onClick={this.addEmptyRow}><i className="fas fa-plus"></i> Add row</button>
 								<button type="button" className="btn btn-outline-primary ml-4" onClick={this.addEmptyCol}><i className="fas fa-plus"></i> Add column</button>

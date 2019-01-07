@@ -14,6 +14,10 @@ export class FirebaseImport extends React.Component {
 	  };
 	}
 
+	componentDidMount(){
+		this.readChartsFromFirebase();
+	}
+
 	handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -60,42 +64,48 @@ export class FirebaseImport extends React.Component {
 	}
 
 	handleLoad = (data) => {
-		let tmpRows = [];
-		let tmp=[];
-
-		data.rows.forEach((item)=>{
-			Object.keys(item).forEach((key)=>{
-    		tmp.push(item[key]);
-			});
-			tmpRows.push(tmp);
-			tmp=[];
-		});
-
-		const dt = {
-			x_name:data.x_name,
-			y_name:data.y_name,
-			chartName:data.chartName,
-			chartType:data.chartType,
-			colors:data.colors,
-			rows:tmpRows,
-			nrows:data.nrows,
-			ncols:data.ncols,
-			colnames:data.colnames,
-			rownames:data.rownames
-		}
-
-		this.props.setData(dt);
-		this.props.selectImportSource(null);
-		this.props.toggle();
+		this.loadFromFirebase(data);
 	}
 
-	componentDidMount(){
-		this.readChartsFromFirebase();
+	loadFromFirebase = (data) => {
+		try{
+
+				let tmpRows = [];
+				let tmp=[];
+
+				data.rows.forEach((item)=>{
+					Object.keys(item).forEach((key)=>{
+		    		tmp.push(item[key]);
+					});
+					tmpRows.push(tmp);
+					tmp=[];
+				});
+
+				const dt = {
+					x_name:data.x_name,
+					y_name:data.y_name,
+					chartName:data.chartName,
+					chartType:data.chartType,
+					colors:data.colors,
+					rows:tmpRows,
+					nrows:data.nrows,
+					ncols:data.ncols,
+					colnames:data.colnames,
+					rownames:data.rownames
+				}
+
+				this.props.setData(dt);
+				this.props.selectImportSource(null);
+				this.setState({message:null});
+				this.props.toggle();
+		}catch(error){
+			this.setState({message:error});
+		}
 	}
 
   render() {
-
 		const charts = this.state.charts;
+		const message = this.state.message;
 
     return (
       <div className="text-center">
@@ -114,6 +124,12 @@ export class FirebaseImport extends React.Component {
 						{charts ? charts.map(this.renderRow) : <tr></tr>}
     			</tbody>
   			</table>
+				{
+					message ? [
+					<div key="error-message" className="alert alert-danger mt-4" role="alert">
+						{"Data load error"}
+					</div>] : ""
+				}
       </div>
     );
   }
