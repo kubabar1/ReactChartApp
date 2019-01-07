@@ -11,6 +11,7 @@ export class Scatter extends React.Component {
     const colors = this.props.data.colors;
     const colnames = this.props.data.colnames;
     const rownames = this.props.data.rownames;
+    const zoom = this.props.zoom;
 
     let dataArray = [];
 
@@ -45,10 +46,8 @@ export class Scatter extends React.Component {
   }
 
   render() {
-
-
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:600, top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
         {this.renderChart()}
       </div>
     );

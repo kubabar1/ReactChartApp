@@ -35,7 +35,7 @@ export class Pie extends React.Component {
 
 
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:600, top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:450, top:this.props.top, left:this.props.left}}>
         {this.renderChart()}
       </div>
     );
