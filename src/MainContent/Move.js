@@ -26,19 +26,13 @@ export class Move extends React.Component {
 
   render() {
     return (
-      <div className="mx-auto">
-        <a href="#" onClick={this.handleMoveTop}>
-          <i className="fas fa-chevron-up mx-3" />
-        </a>
-        <a href="#" onClick={this.handleMoveBottom}>
-          <i className="fas fa-chevron-down mx-3" />
-        </a>
-        <a href="#" onClick={this.handleMoveLeft}>
-          <i className="fas fa-chevron-left mx-3" />
-        </a>
-        <a href="#" onClick={this.handleMoveRight}>
-          <i className="fas fa-chevron-right mx-3" />
-        </a>
+      <div id="move-button-container" className="text-center mt-3">
+        <div className="container">
+          <i className="fas fa-chevron-up mx-3 move-button" onClick={this.handleMoveTop}/>
+          <i className="fas fa-chevron-down mx-3 move-button" onClick={this.handleMoveBottom}/>
+          <i className="fas fa-chevron-left mx-3 move-button" onClick={this.handleMoveLeft}/>
+          <i className="fas fa-chevron-right mx-3 move-button" onClick={this.handleMoveRight}/>
+        </div>
       </div>
     );
   }

@@ -66,30 +66,40 @@ export class MainContent extends React.Component {
 
   render() {
     const chartType = this.props.chartType;
+    const legend = this.props.legend;
 
     return (
       <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         <div className="row">
-          <div id="content-main-container" className="col-10 mt-5 mb-5" >
-            {this.renderChart()}
+          <div className="col-xs-0 col-sm-0 col-md-9 col-lg-9">
           </div>
-          <div id="zoom_container" className="col-2">
+          <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <Zoom
               zoomIn={this.props.zoomIn}
               zoomOut={this.props.zoomOut}
             />
-            <Legend/>
           </div>
         </div>
-        <div id="move_buttons_container" className="row col-10">
-          <Move
-            moveTop={this.props.moveTop}
-            moveBottom={this.props.moveBottom}
-            moveLeft={this.props.moveLeft}
-            moveRight={this.props.moveRight}
-          />
+        <div className="row">
+          <div id="chart-cont" className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            {this.renderChart()}
+            <Move
+              moveTop={this.props.moveTop}
+              moveBottom={this.props.moveBottom}
+              moveLeft={this.props.moveLeft}
+              moveRight={this.props.moveRight}
+            />
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 mx-auto">
+            { legend ?
+              <Legend
+                data={this.props.data}
+              /> : ""
+            }
+          </div>
         </div>
       </div>
+
     );
   }
 }

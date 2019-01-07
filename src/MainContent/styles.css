@@ -1,5 +1,6 @@
 #chart-container{
   mix-blend-mode: multiply;
+  width:65%;
 }
 
 .legend-color-sq{
@@ -11,4 +12,27 @@
 #legend{
   max-height:300px;
   overflow-y: auto;
+}
+
+.zoom-button{
+  font-size: 30px;
+  cursor:pointer;
+}
+
+.move-button{
+  font-size: 22px;
+  cursor:pointer;
+}
+
+#chart-cont{
+    position: relative;
+    z-index: 99;
+}
+
+#move-button-container{
+    position: absolute;
+    z-index: 999;
+    margin: 5% auto;
+    left: 0;
+    right: 0;
 }
