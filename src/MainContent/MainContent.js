@@ -6,7 +6,6 @@ import { BarVertical } from "./ChartTypes/BarVertical.js";
 import { BarHorizontal } from "./ChartTypes/BarHorizontal.js";
 import { Line } from "./ChartTypes/Line.js";
 import { Pie } from "./ChartTypes/Pie.js";
-import { Zoom } from "./Zoom.js";
 import { Move } from "./Move.js";
 import { Legend } from "./Legend.js";
 
@@ -20,7 +19,6 @@ export class MainContent extends React.Component {
 
     if(chartType == "Scatter"){
       tmp=<Scatter
-        zoom={this.props.zoom}
         top={this.props.top}
         left={this.props.left}
         color={this.props.color}
@@ -28,7 +26,6 @@ export class MainContent extends React.Component {
       />;
     }else if(chartType == "Pie"){
       tmp=<Pie
-        zoom={this.props.zoom}
         top={this.props.top}
         left={this.props.left}
         color={this.props.color}
@@ -36,7 +33,6 @@ export class MainContent extends React.Component {
       />;
     }else if(chartType == "BarVertical"){
       tmp=<BarVertical
-        zoom={this.props.zoom}
         top={this.props.top}
         left={this.props.left}
         color={this.props.color}
@@ -44,7 +40,6 @@ export class MainContent extends React.Component {
       />;
     }else if(chartType == "BarHorizontal"){
       tmp=<BarHorizontal
-        zoom={this.props.zoom}
         top={this.props.top}
         left={this.props.left}
         color={this.props.color}
@@ -52,7 +47,6 @@ export class MainContent extends React.Component {
       />;
     }else if(chartType == "Line"){
       tmp=<Line
-        zoom={this.props.zoom}
         top={this.props.top}
         left={this.props.left}
         color={this.props.color}
@@ -70,16 +64,6 @@ export class MainContent extends React.Component {
 
     return (
       <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-        <div className="row">
-          <div className="col-xs-0 col-sm-0 col-md-9 col-lg-9">
-          </div>
-          <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <Zoom
-              zoomIn={this.props.zoomIn}
-              zoomOut={this.props.zoomOut}
-            />
-          </div>
-        </div>
         <div className="row">
           <div id="chart-cont" className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
             {this.renderChart()}

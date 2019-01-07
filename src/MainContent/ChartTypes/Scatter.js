@@ -43,10 +43,9 @@ export class Scatter extends React.Component {
         />
       </VictoryChart>
     );
-  }//height:450*zoom,
+  }
 
   render() {
-    const zoom = this.props.zoom;
     return (
       <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
         {this.renderChart()}

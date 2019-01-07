@@ -10,7 +10,6 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
-      zoom:1,
       top:0,
       left:0,
       legend:false,
@@ -27,28 +26,6 @@ export class App extends React.Component {
         rownames:["x0", "x1", "x2", "x3"]
       }
     };
-  }
-
-  zoomIn = () => {
-    var x = this.state.zoom;
-    var y = parseFloat(x)+0.05;
-    console.log(y)
-    if(y<=2){
-      this.setState({
-        zoom:y
-      })
-    }
-  }
-
-  zoomOut = () => {
-    var x = this.state.zoom;
-    var y = parseFloat(x)-0.05;
-    console.log(y)
-    if(y>0.5){
-      this.setState({
-        zoom:y
-      })
-    }
   }
 
   setLegendVisibility = (bool) => {
@@ -424,9 +401,6 @@ export class App extends React.Component {
           chartName={this.state.chartName}
         />
         <MainContent
-          zoom={this.state.zoom}
-          zoomIn={this.zoomIn}
-          zoomOut={this.zoomOut}
           top={this.state.top}
           left={this.state.left}
           moveTop={this.moveTop}
