@@ -51,12 +51,21 @@ export class DataTable extends React.Component {
     this.props.setRowName(i, event.target.value);
   }
 
+  setVal = (i, j, val) => {
+    if(isNaN(val) || val==""){
+      this.props.showMessage("Values have to be a number");
+    }else{
+      this.props.showMessage(null);
+      this.props.setValue(i,j,val);
+    }
+  }
+
   renderRows = (item, i) => {
     let tmpRows = [];
     for (let j = 0; j < item.length; j++) {
       tmpRows.push(
         <td key={j}>
-          <input type="number" value={item[j]} className="form-control" onChange={(event)=>this.props.setValue(i,j, event.target.value)}/>
+          <input type="number" value={item[j]} className="form-control" onChange={(event)=>this.setVal(i,j, event.target.value)}/>
         </td>
       );
     }
