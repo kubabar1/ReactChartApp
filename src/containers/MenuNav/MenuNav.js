@@ -6,7 +6,7 @@ import ModalData from "./DataModal/ModalData.js";
 import ModalSettings from "./SettingsModal/ModalSettings.js";
 import { ModalExportData } from "./ExportModal/ModalExportData.js";
 import { ModalImportData } from "./ImportModal/ModalImportData.js";
-import { ModalHelp } from "./ModalHelp.js";
+import { ModalHelp } from "./HelpModal/ModalHelp.js";
 import "font-awesome/css/font-awesome.min.css";
 import Undo from "./Undo.js"
 

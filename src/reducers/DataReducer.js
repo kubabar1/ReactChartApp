@@ -67,7 +67,7 @@ const DataReducer = (state = data, action) => {
 
     case types.SET_VALUE:
 			let tmpRow = copyMultidimensionalArray(state.rows);
-			tmpRow[action.payload.r][action.payload.c] = parseInt(action.payload.val);
+			tmpRow[action.payload.r][action.payload.c] = parseFloat(action.payload.val);
 			return Object.assign({}, state, {
         rows: tmpRow
       })

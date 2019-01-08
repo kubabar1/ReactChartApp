@@ -46,7 +46,7 @@ export class ModalHelp extends React.Component {
             <div className="container">
               <h2>Welcome in Graph App!</h2>
               <h5 className="pt-4">Add data</h5>
-              <p>This option allow us adding new points. In order to add new point to we should set filed "Value X" and "Value Y"</p>
+              <p>In this panel you can add and edit your data. In order to edit data you have to</p>
 
               <h5 className="pt-4">Remove data</h5>
               <p>This option allow us delete all data stored in memory.</p>

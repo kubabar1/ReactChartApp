@@ -94,7 +94,7 @@ class DeviceImport extends React.Component {
 
     for(let i=0; i<ncols ; i++){
       for(let j=0; j<nrows ; j++){
-					tmp.push(rowsVals[i*nrows+j]);
+					tmp.push(parseFloat(rowsVals[i*nrows+j]));
       }
 			rows.push(tmp);
 			tmp=[];

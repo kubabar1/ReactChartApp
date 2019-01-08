@@ -51,7 +51,7 @@ class DataTable extends React.Component {
     for (let j = 0; j < item.length; j++) {
       tmpRows.push(
         <td key={j}>
-          <input type="number" value={item[j]} className="form-control" onChange={(event)=>this.setVal(i,j, event.target.value)}/>
+          <input type="number" step="any" value={item[j]} className="form-control" onChange={(event)=>this.setVal(i,j, event.target.value)}/>
         </td>
       );
     }
