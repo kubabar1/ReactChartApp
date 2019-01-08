@@ -1,0 +1,17 @@
+export const ADD_ROW = 'ADD_ROW';
+export const ADD_COL = 'ADD_COL';
+export const SET_VALUE = 'SET_VALUE';
+export const CHANGE_COLOR = 'CHANGE_COLOR';
+export const SET_COLUMN_NAME = 'SET_COLUMN_NAME';
+export const SET_ROW_NAME = 'SET_ROW_NAME';
+export const CLEAR_DATA = "CLEAR_DATA";
+export const SET_DATA = "SET_DATA";
+export const MOVE_TOP = "MOVE_TOP";
+export const MOVE_BOTTOM = "MOVE_BOTTOM";
+export const MOVE_LEFT = "MOVE_LEFT";
+export const MOVE_RIGHT = "MOVE_RIGHT";
+export const SET_LEGEND_VISIBILITY = "SET_LEGEND_VISIBILITY";
+export const SET_X_AXIS_NAME = "SET_X_AXIS_NAME";
+export const SET_Y_AXIS_NAME = "SET_Y_AXIS_NAME";
+export const SET_CHART_TYPE = "SET_CHART_TYPE";
+export const SET_CHART_NAME = "SET_CHART_NAME";
