@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import CSVReader from 'react-csv-reader'
@@ -12,24 +11,14 @@ class DeviceImport extends React.Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-
+			message:null
 	  };
 	}
 
-	handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
   handleCSVLoad = (data, filename) => {
 
-    if(data.length!=10){
-        throw "Incorrect csv input data array length"
+    if(data.length!==10){
+        throw new Error("Incorrect csv input data array length");
     }
 
 		const x_name = data[0][0];
@@ -55,10 +44,11 @@ class DeviceImport extends React.Component {
       if(color!=null && patt.test(color)){
         colors.push(color);
       }
+			return null;
     });
 
-    if(colors.length!=ncols){
-      throw "Colors array length not mach number of columns";
+    if(colors.length!==ncols){
+      throw new Error("Colors array length not mach number of columns");
     }
 
     data[7][0].split(",").map((x,i) => {
@@ -66,10 +56,11 @@ class DeviceImport extends React.Component {
       if(colname!=null){
         colnames.push(colname);
       }
+			return null;
     });
 
-    if(colnames.length!=ncols){
-      throw "Colnames array length not mach number of columns";
+    if(colnames.length!==ncols){
+      throw new Error("Colnames array length not mach number of columns");
     }
 
     data[8][0].split(",").map((x,i) => {
@@ -77,16 +68,17 @@ class DeviceImport extends React.Component {
       if(rowname!=null){
         rownames.push(rowname);
       }
+			return null;
     });
 
-    if(rownames.length!=nrows){
-      throw "Rownames array length not mach number of rows";
+    if(rownames.length!==nrows){
+      throw new Error("Rownames array length not mach number of rows");
     }
 
     const rowsVals = data[9][0].split(",");
 
-		if(rowsVals.length != nrows*ncols){
-			throw "Incorrect number of values";
+		if(rowsVals.length !== nrows*ncols){
+			throw new Error("Incorrect number of values");
 		}
 
 		let rows=[];

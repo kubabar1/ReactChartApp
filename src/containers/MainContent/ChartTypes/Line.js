@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { VictoryChart} from "victory-chart";
 import { VictoryTheme, VictoryLine, VictoryScatter, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
 
 class Line extends React.Component {
 

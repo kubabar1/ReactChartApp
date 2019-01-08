@@ -53,9 +53,9 @@ const ChartReducer = (state = chartInfo, action) => {
           })
         }
         return state;
-
+    default:
+      return state
 	}
-	return state
 }
 const undoableChartReducer = undoable(ChartReducer, {
   filter: distinctState()

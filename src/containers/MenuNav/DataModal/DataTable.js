@@ -41,7 +41,7 @@ class DataTable extends React.Component {
   }
 
   setVal = (i, j, val) => {
-    if(!isNaN(val) && val!=""){
+    if(!isNaN(val) && val!==""){
       this.props.setValue(i,j,val);
     }
   }
@@ -65,19 +65,8 @@ class DataTable extends React.Component {
   }
 
   render() {
-    const options = {
-      deleteText: 'Delete rows',
-      handleConfirmDeleteRow: this.customConfirm
-    };
-
     const rows = this.props.data.rows;
-    const rownames = this.props.data.rownames;
     const colnames = this.props.data.colnames;
-
-    const cellEdit = {
-      mode: 'click',
-      blurToSave: true
-    };
 
     return (
       <div className="table-wrapper-scroll-y table-responsive text-nowrap">

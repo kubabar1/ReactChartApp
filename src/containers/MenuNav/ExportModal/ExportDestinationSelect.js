@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import { CSVLink } from "react-csv";
@@ -21,11 +20,12 @@ class ExportDestinationSelect extends React.Component {
 		const rows = this.props.data.rows;
 		const chartName = this.props.data.chartName;
 
-		if(chartName!=null && chartName!=""){
+		if(chartName!=null && chartName.replace(/\s/g,'')!==""){
 			let objArr = [];
 
 			rows.map((val, index) => {
 				objArr.push(Object.assign({}, val));
+				return null;
 			});
 
 			db.collection("charts").doc(chartName).set({
@@ -77,7 +77,7 @@ class ExportDestinationSelect extends React.Component {
         <div className="row">
           <CSVLink data={csvData} filename={chartName!=null ? chartName+".csv" : 'react_chart_app_data.csv'} id="import_select_container" className="col-3 offset-2">
             <div>
-              <img src={require('../../../images/hard_drive.png')} className="img-fluid"/>
+              <img src={require('../../../images/hard_drive.png')} alt="Hard drive" className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Device</p>
@@ -85,7 +85,7 @@ class ExportDestinationSelect extends React.Component {
           </CSVLink>
           <div id="import_select_container" className="col-3 offset-2" onClick={this.saveDataInFirebase}>
             <div>
-              <img src={require('../../../images/firebase.png')} className="img-fluid"/>
+              <img src={require('../../../images/firebase.png')} alt="Firebase logo" className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Firebase</p>

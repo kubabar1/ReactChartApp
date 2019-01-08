@@ -35,7 +35,7 @@ class ModalSettings extends React.Component {
 
 	renderExampleChart = () =>{
 		const chartType=this.props.data.chartType;
-		if(chartType=="Scatter"){
+		if(chartType==="Scatter"){
 			return(
 				<VictoryChart
 					theme={VictoryTheme.material}
@@ -53,7 +53,7 @@ class ModalSettings extends React.Component {
 					/>
 				</VictoryChart>
 			);
-		}else if(chartType=="BarVertical"){
+		}else if(chartType==="BarVertical"){
 			return(
 				<VictoryChart
   				theme={VictoryTheme.material}
@@ -70,7 +70,7 @@ class ModalSettings extends React.Component {
   				/>
 				</VictoryChart>
 			);
-		}else if(chartType=="BarHorizontal"){
+		}else if(chartType==="BarHorizontal"){
 			return(
 				<VictoryChart
   				theme={VictoryTheme.material}
@@ -89,7 +89,7 @@ class ModalSettings extends React.Component {
   				/>
 				</VictoryChart>
 			);
-		}else if(chartType=="Line"){
+		}else if(chartType==="Line"){
 			return(
 				<VictoryChart
   				theme={VictoryTheme.material}
@@ -109,7 +109,7 @@ class ModalSettings extends React.Component {
   				/>
 				</VictoryChart>
 			);
-		}else if(chartType=="Pie"){
+		}else if(chartType==="Pie"){
 			return(
 				<VictoryPie
   				data={[

@@ -1,16 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { VictoryChart} from "victory-chart";
-import { VictoryTheme, VictoryPie, VictoryLabel, VictoryAxis } from "victory";
+import { VictoryPie } from "victory";
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
 
 class Pie extends React.Component {
 
   renderChart = () => {
     const rows = this.props.data.rows;
     const colnames = this.props.data.colnames;
-    const rownames = this.props.data.rownames;
 
     let dataArray = [];
 

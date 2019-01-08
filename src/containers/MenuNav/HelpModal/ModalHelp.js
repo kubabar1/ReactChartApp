@@ -97,8 +97,7 @@ export class ModalHelp extends React.Component {
 							</p>
 							<ul>
  								<li>
-									* .csv file (name of file is a chart name, which you can set in "Settings" panel, or "react_chart_app_data.csv"
-									if this name is not set)
+									* .csv file (name of file is "react_chart_app_data.csv")
 								</li>
 								<li>
 									to firebase (if you want to export data to firebase you have to set chart name before in "Settings" panel)
