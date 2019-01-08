@@ -22,33 +22,13 @@ class MainContent extends React.Component {
     if(chartType == "Scatter"){
       tmp=<Scatter/>;
     }else if(chartType == "Pie"){
-      tmp=<Pie
-        top={this.props.top}
-        left={this.props.left}
-        color={this.props.color}
-        data={this.props.data}
-      />;
+      tmp=<Pie/>;
     }else if(chartType == "BarVertical"){
-      tmp=<BarVertical
-        top={this.props.top}
-        left={this.props.left}
-        color={this.props.color}
-        data={this.props.data}
-      />;
+      tmp=<BarVertical/>;
     }else if(chartType == "BarHorizontal"){
-      tmp=<BarHorizontal
-        top={this.props.top}
-        left={this.props.left}
-        color={this.props.color}
-        data={this.props.data}
-      />;
+      tmp=<BarHorizontal/>;
     }else if(chartType == "Line"){
-      tmp=<Line
-        top={this.props.top}
-        left={this.props.left}
-        color={this.props.color}
-        data={this.props.data}
-      />;
+      tmp=<Line/>;
     }
 
     return(tmp);

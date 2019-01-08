@@ -77,7 +77,7 @@ class FirebaseImport extends React.Component {
 
 				data.rows.forEach((item)=>{
 					Object.keys(item).forEach((key)=>{
-		    		tmp.push(item[key]);
+		    		tmp.push(parseFloat(item[key]));
 					});
 					tmpRows.push(tmp);
 					tmp=[];
