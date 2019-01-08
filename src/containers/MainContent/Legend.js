@@ -30,7 +30,7 @@ class Legend extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.data
+  data: state.data.present
 })
 
 export default connect(mapStateToProps, null)(Legend);

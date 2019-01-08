@@ -61,7 +61,7 @@ export class ModalData extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.data
+  data: state.data.present
 })
 
 const mapDispatchToProps = (dispatch) => {

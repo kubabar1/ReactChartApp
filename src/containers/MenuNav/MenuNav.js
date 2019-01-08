@@ -87,6 +87,7 @@ export class MenuNav extends React.Component {
 			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2 m-0 p-0">
 				<MenuHeader/>
 				<MenuItem icon="fas fa-plus-square" name="Add data" clickMenu={this.toggleData}/>
+				<Undo/>
 				<MenuItem icon="fas fa-file-upload" name="Import data" clickMenu={this.toggleModalImportData}/>
 				<MenuItem icon="fas fa-file-download" name="Export data" clickMenu={this.toggleModalExportData}/>
 				<MenuItem icon="fas fa-cog" name="Settings" clickMenu={this.toggleSettings}/>

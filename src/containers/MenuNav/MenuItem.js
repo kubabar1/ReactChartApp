@@ -4,15 +4,10 @@ import "font-awesome/css/font-awesome.min.css";
 
 export class MenuItem extends React.Component {
 
-  handleMenuClick = (e) => {
-    e.preventDefault();
-    this.props.clickMenu(e);
-  }
-
   render() {
     return (
       <div className="menu_item_container">
-        <a className="nav_item" href="#" onClick={this.handleMenuClick}>
+        <a className="nav_item" href="#" onClick={(e)=>this.props.clickMenu(e)}>
           <div className="row px-4 py-3">
             <div className="menu_icon">
               <i className={this.props.icon} />

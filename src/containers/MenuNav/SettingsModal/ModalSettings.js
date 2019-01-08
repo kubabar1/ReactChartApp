@@ -176,8 +176,8 @@ class ModalSettings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.data,
-	chartInfo: state.chartInfo
+  data: state.data.present,
+	chartInfo: state.chartInfo.present
 })
 
 const mapDispatchToProps = (dispatch) => {

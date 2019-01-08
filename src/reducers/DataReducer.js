@@ -10,9 +10,22 @@ const data = {
     rows:[[0,1,2,3],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
     nrows:4,
     ncols:4,
-    colnames:["y0", "y1", "y2", "y3"],
+    colnames:new Array("y0", "y1", "y2", "y3"),
     rownames:["x0", "x1", "x2", "x3"]
 };
+
+const copy = (src) => {
+    return JSON.parse(JSON.stringify(src));
+}
+
+const copyMultidimensionalArray = (currentArray) => {
+  let newArray = [];
+
+  for (let i = 0; i < currentArray.length; i++)
+    newArray[i] = currentArray[i].slice();
+
+  return newArray;
+}
 
 const DataReducer = (state = data, action) => {
 	switch (action.type) {
@@ -26,7 +39,7 @@ const DataReducer = (state = data, action) => {
 
     case types.ADD_COL:
 			let ncolsTmp = state.ncols + 1;
-			let tmpRows = state.rows;
+			let tmpRows = copyMultidimensionalArray(state.rows);
 			state.rows.forEach((item, index) => {
 					tmpRows[index] = [...item, action.payload.col[index]]
 				}
@@ -39,28 +52,28 @@ const DataReducer = (state = data, action) => {
       })
 
     case types.SET_COLUMN_NAME:
-			let tmpColnames = state.colnames;
+			let tmpColnames = copy(state.colnames);
 			tmpColnames[action.payload.index] = action.payload.columnName;
   		return Object.assign({}, state, {
         colnames: tmpColnames
       })
 
     case types.SET_ROW_NAME:
-			let tmpRownames = state.rownames;
+			let tmpRownames = copy(state.rownames);
 			tmpRownames[action.payload.index] = action.payload.rowName;
   		return Object.assign({}, state, {
         rownames: tmpRownames
       })
 
     case types.SET_VALUE:
-			let tmpRow = state.rows;
+			let tmpRow = copyMultidimensionalArray(state.rows);
 			tmpRow[action.payload.r][action.payload.c] = parseInt(action.payload.val);
 			return Object.assign({}, state, {
         rows: tmpRow
       })
 
 		case types.CHANGE_COLOR:
-			let tmpColors = state.colors;
+			let tmpColors = copy(state.colors);
 			tmpColors[action.payload.index] = action.payload.color;
 			return Object.assign({}, state, {
         colors: tmpColors
@@ -111,4 +124,8 @@ const DataReducer = (state = data, action) => {
 	return state
 }
 
-export default DataReducer;
+const undoableDataReducer = undoable(DataReducer, {
+  filter: distinctState()
+})
+
+export default undoableDataReducer;

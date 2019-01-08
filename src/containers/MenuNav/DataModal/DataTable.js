@@ -102,7 +102,7 @@ class DataTable extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.data
+  data: state.data.present
 })
 
 const mapDispatchToProps = (dispatch) => {

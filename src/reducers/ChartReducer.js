@@ -57,5 +57,8 @@ const ChartReducer = (state = chartInfo, action) => {
 	}
 	return state
 }
+const undoableChartReducer = undoable(ChartReducer, {
+  filter: distinctState()
+})
 
-export default ChartReducer;
+export default undoableChartReducer
