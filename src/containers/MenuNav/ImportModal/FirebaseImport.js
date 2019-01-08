@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import db from "../../Firebase/MyDB.js";
@@ -50,8 +49,8 @@ class FirebaseImport extends React.Component {
 		return(
 			<tr key={index}>
 				<td>{currElement.chartName}</td>
-				<td><a href="#" className="btn btn-primary" role="button" onClick={()=>this.handleLoad(currElement)}>Import</a></td>
-				<td><a href="#" className="btn btn-danger" role="button" onClick={()=>this.handleDelete(currElement)}>Delete</a></td>
+				<td><button className="btn btn-primary" type="button" onClick={()=>this.handleLoad(currElement)}>Import</button></td>
+				<td><button className="btn btn-danger" type="button" onClick={()=>this.handleDelete(currElement)}>Delete</button></td>
 			</tr>
 		);
 	}

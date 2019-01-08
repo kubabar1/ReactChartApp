@@ -10,7 +10,7 @@ const data = {
     rows:[[0,1,2,3],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
     nrows:4,
     ncols:4,
-    colnames:new Array("y0", "y1", "y2", "y3"),
+    colnames:["y0", "y1", "y2", "y3"],
     rownames:["x0", "x1", "x2", "x3"]
 };
 
@@ -120,8 +120,10 @@ const DataReducer = (state = data, action) => {
 			return Object.assign({}, state, {
 				chartName: action.payload
 			})
+
+    default:
+      return state
 	}
-	return state
 }
 
 const undoableDataReducer = undoable(DataReducer, {

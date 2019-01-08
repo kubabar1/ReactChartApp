@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -14,7 +13,7 @@ export class DataSourceSelect extends React.Component {
         <div className="row">
           <div id="import_select_container" className="col-3 offset-2" onClick={() => this.props.selectImportSource("device")}>
             <div>
-              <img src={require('../../../images/hard_drive.png')} className="img-fluid"/>
+              <img src={require('../../../images/hard_drive.png')} alt="Hard drive" className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Device</p>
@@ -22,7 +21,7 @@ export class DataSourceSelect extends React.Component {
           </div>
           <div id="import_select_container" className="col-3 offset-2" onClick={() => this.props.selectImportSource("firebase")}>
             <div>
-              <img src={require('../../../images/firebase.png')} className="img-fluid"/>
+              <img src={require('../../../images/firebase.png')} alt="Firebase logo" className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Firebase</p>

@@ -19,26 +19,23 @@ class MainContent extends React.Component {
 
     let tmp;
 
-    if(chartType == "Scatter"){
+    if(chartType === "Scatter"){
       tmp=<Scatter/>;
-    }else if(chartType == "Pie"){
+    }else if(chartType === "Pie"){
       tmp=<Pie/>;
-    }else if(chartType == "BarVertical"){
+    }else if(chartType === "BarVertical"){
       tmp=<BarVertical/>;
-    }else if(chartType == "BarHorizontal"){
+    }else if(chartType === "BarHorizontal"){
       tmp=<BarHorizontal/>;
-    }else if(chartType == "Line"){
+    }else if(chartType === "Line"){
       tmp=<Line/>;
     }
 
     return(tmp);
   }
 
-
   render() {
-    const chartType = this.props.chartType;
     const legend = this.props.chartInfo.legend;
-
 
     return (
       <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">

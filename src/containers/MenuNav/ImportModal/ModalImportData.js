@@ -55,7 +55,7 @@ export class ModalImportData extends React.Component {
           <ModalBody>
 						{importSource!=null ?
 							(
-								importSource=="device" ?
+								importSource==="device" ?
 								<DeviceImport
 									toggle={this.props.toggle}
 									selectImportSource={this.selectImportSource}
