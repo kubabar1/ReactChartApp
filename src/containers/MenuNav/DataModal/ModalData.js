@@ -3,7 +3,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "./DataTable.js"
 import { connect } from 'react-redux'
-import "./styles.css";
 import {bindActionCreators} from 'redux'
 import "font-awesome/css/font-awesome.min.css";
 import {setValue, addRow, addCol, clearData} from '../../../actions/index.js'

@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import Scatter from "./ChartTypes/Scatter.js";
 import BarVertical from "./ChartTypes/BarVertical.js";
 import BarHorizontal from "./ChartTypes/BarHorizontal.js";

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import { CSVLink } from "react-csv";
 import db from "../../Firebase/MyDB.js";

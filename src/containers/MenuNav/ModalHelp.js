@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 
 export class ModalHelp extends React.Component {

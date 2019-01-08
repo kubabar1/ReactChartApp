@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes.js'
+import undoable, { distinctState } from 'redux-undo'
 
 const chartInfo = {
   top:0,
@@ -6,7 +7,7 @@ const chartInfo = {
   legend:false
 };
 
-export default (state = chartInfo, action) => {
+const ChartReducer = (state = chartInfo, action) => {
 	switch (action.type) {
 		case types.SET_LEGEND_VISIBILITY:
       return Object.assign({}, state, {
@@ -56,3 +57,5 @@ export default (state = chartInfo, action) => {
 	}
 	return state
 }
+
+export default ChartReducer;

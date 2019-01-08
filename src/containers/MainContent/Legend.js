@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import { connect } from 'react-redux'
 
 class Legend extends React.Component {

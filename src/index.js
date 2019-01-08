@@ -5,6 +5,7 @@ import { App } from "./containers/App.js";
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import "./styles/styles.css";
 
 const store = createStore(reducer);
 

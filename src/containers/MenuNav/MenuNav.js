@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import { MenuItem } from "./MenuItem.js";
 import { MenuHeader } from "./MenuHeader.js";
 import ModalData from "./DataModal/ModalData.js";
@@ -9,6 +8,7 @@ import { ModalExportData } from "./ExportModal/ModalExportData.js";
 import { ModalImportData } from "./ImportModal/ModalImportData.js";
 import { ModalHelp } from "./ModalHelp.js";
 import "font-awesome/css/font-awesome.min.css";
+import Undo from "./Undo.js"
 
 export class MenuNav extends React.Component {
 
@@ -87,7 +87,6 @@ export class MenuNav extends React.Component {
 			<div id="menu_nav" className="col-xs-12 col-sm-12 col-md-2 col-lg-2 m-0 p-0">
 				<MenuHeader/>
 				<MenuItem icon="fas fa-plus-square" name="Add data" clickMenu={this.toggleData}/>
-				<MenuItem icon="fas fa-undo" name="Undo" clickMenu={this.props.undo}/>
 				<MenuItem icon="fas fa-file-upload" name="Import data" clickMenu={this.toggleModalImportData}/>
 				<MenuItem icon="fas fa-file-download" name="Export data" clickMenu={this.toggleModalExportData}/>
 				<MenuItem icon="fas fa-cog" name="Settings" clickMenu={this.toggleSettings}/>

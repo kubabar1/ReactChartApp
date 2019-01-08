@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {moveTop, moveBottom, moveLeft, moveRight} from '../../actions/index.js'

@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles.css";
 import { VictoryChart} from "victory-chart";
 import { VictoryTheme, VictoryLine, VictoryScatter, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
 import { connect } from 'react-redux'

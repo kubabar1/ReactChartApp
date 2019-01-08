@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes.js'
+import undoable, { distinctState } from 'redux-undo'
 
 const data = {
     x_name:"",
@@ -13,7 +14,7 @@ const data = {
     rownames:["x0", "x1", "x2", "x3"]
 };
 
-export default (state = data, action) => {
+const DataReducer = (state = data, action) => {
 	switch (action.type) {
 		case types.ADD_ROW:
 			let nrowsTmp = state.nrows + 1;
@@ -109,3 +110,5 @@ export default (state = data, action) => {
 	}
 	return state
 }
+
+export default DataReducer;
