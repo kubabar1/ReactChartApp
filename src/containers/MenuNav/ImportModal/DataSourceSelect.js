@@ -6,23 +6,6 @@ import "font-awesome/css/font-awesome.min.css";
 
 export class DataSourceSelect extends React.Component {
 
-	constructor(props) {
-	  super(props);
-	  this.state = {
-
-	  };
-	}
-
-	handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
   render() {
     return (
       <div className="container col-10 offset-1">
@@ -32,7 +15,7 @@ export class DataSourceSelect extends React.Component {
         <div className="row">
           <div id="import_select_container" className="col-3 offset-2" onClick={() => this.props.selectImportSource("device")}>
             <div>
-              <img src={require('../../hard_drive.png')} className="img-fluid"/>
+              <img src={require('../../../images/hard_drive.png')} className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Device</p>
@@ -40,7 +23,7 @@ export class DataSourceSelect extends React.Component {
           </div>
           <div id="import_select_container" className="col-3 offset-2" onClick={() => this.props.selectImportSource("firebase")}>
             <div>
-              <img src={require('../../firebase.png')} className="img-fluid"/>
+              <img src={require('../../../images/firebase.png')} className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Firebase</p>

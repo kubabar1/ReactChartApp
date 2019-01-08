@@ -5,13 +5,16 @@ import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import { VictoryChart} from "victory-chart";
 import { VictoryTheme, VictoryScatter, VictoryPie, VictoryBar, VictoryLine } from "victory";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {setChartName, setXAxisName, setYAxisName, setLegendVisibility, setChartType} from '../../../actions/index.js'
 
-export class ModalSettings extends React.Component {
+class ModalSettings extends React.Component {
 
 	constructor(props) {
 	  super(props);
 	  this.state = {
-			modalColorInput:false
+			modalSettings:false
 	  };
 	}
 
@@ -126,7 +129,7 @@ export class ModalSettings extends React.Component {
 		const chartName = this.props.data.chartName;
 		const x_name = this.props.data.x_name;
 		const y_name = this.props.data.y_name;
-		const legend = this.props.legend;
+		const legend = this.props.chartInfo.legend;
 
     return (
       <div>
@@ -172,3 +175,20 @@ export class ModalSettings extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+	chartInfo: state.chartInfo
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+		setChartName:setChartName,
+		setXAxisName:setXAxisName,
+		setYAxisName:setYAxisName,
+		setLegendVisibility:setLegendVisibility,
+		setChartType:setChartType
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalSettings);

@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import CSVReader from 'react-csv-reader'
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {setData} from '../../../actions/index.js'
 
-export class DeviceImport extends React.Component {
+class DeviceImport extends React.Component {
 
 	constructor(props) {
 	  super(props);
@@ -146,3 +149,13 @@ export class DeviceImport extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({setData: setData}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeviceImport);

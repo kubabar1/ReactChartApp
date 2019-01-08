@@ -4,10 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import { CSVLink } from "react-csv";
-
 import db from "../../Firebase/MyDB.js";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {setData} from '../../../actions/index.js'
 
-export class ExportDestinationSelect extends React.Component {
+class ExportDestinationSelect extends React.Component {
 
 	constructor(props) {
 	  super(props);
@@ -46,7 +48,6 @@ export class ExportDestinationSelect extends React.Component {
 			this.setState({messge:null});
 			this.props.toggle(e);
 		}else{
-				console.log("test")
 			this.setState({message:"If you want to export data to firebase, you must enter the name of the chart"});
 		}
 	}
@@ -54,8 +55,6 @@ export class ExportDestinationSelect extends React.Component {
   render() {
 		const chartName = this.props.chartName;
 		const message = this.state.message;
-
-		console.log(message)
 
     const csvData = [
 			[this.props.data.x_name],
@@ -79,7 +78,7 @@ export class ExportDestinationSelect extends React.Component {
         <div className="row">
           <CSVLink data={csvData} filename={chartName!=null ? chartName+".csv" : 'react_chart_app_data.csv'} id="import_select_container" className="col-3 offset-2">
             <div>
-              <img src={require('../../hard_drive.png')} className="img-fluid"/>
+              <img src={require('../../../images/hard_drive.png')} className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Device</p>
@@ -87,7 +86,7 @@ export class ExportDestinationSelect extends React.Component {
           </CSVLink>
           <div id="import_select_container" className="col-3 offset-2" onClick={this.saveDataInFirebase}>
             <div>
-              <img src={require('../../firebase.png')} className="img-fluid"/>
+              <img src={require('../../../images/firebase.png')} className="img-fluid"/>
             </div>
             <div className="text-center">
               <p className="pb-0 mb-0 pt-1">Firebase</p>
@@ -104,3 +103,13 @@ export class ExportDestinationSelect extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({setData:setData}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExportDestinationSelect);

@@ -26,7 +26,7 @@ export class Pie extends React.Component {
     return(
         <div>
           <h4>{this.props.data.chartName}</h4>
-          <VictoryPie colorScale={this.props.data.colors} data={dataArray} radius={110} height={300}/>
+          <VictoryPie colorScale={this.props.data.colors} data={dataArray} />
         </div>
     );
   }
@@ -35,7 +35,7 @@ export class Pie extends React.Component {
 
 
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:450, top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
         {this.renderChart()}
       </div>
     );

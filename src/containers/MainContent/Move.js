@@ -1,8 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {moveTop, moveBottom, moveLeft, moveRight} from '../../actions/index.js'
 
-export class Move extends React.Component {
+class Move extends React.Component {
 
   handleMoveTop = (e) => {
     e.preventDefault();
@@ -37,3 +40,19 @@ export class Move extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+  chartInfo: state.chartInfo
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    moveTop: moveTop,
+    moveBottom: moveBottom,
+    moveLeft:moveLeft,
+    moveRight:moveRight
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Move);

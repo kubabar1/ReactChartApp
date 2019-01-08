@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import {DataSourceSelect} from "./DataSourceSelect.js"
-import {DeviceImport} from "./DeviceImport.js"
-import {FirebaseImport} from "./FirebaseImport.js"
+import DeviceImport from "./DeviceImport.js"
+import FirebaseImport from "./FirebaseImport.js"
 
 export class ModalImportData extends React.Component {
 
@@ -58,12 +58,10 @@ export class ModalImportData extends React.Component {
 							(
 								importSource=="device" ?
 								<DeviceImport
-			          	setData={this.props.setData}
 									toggle={this.props.toggle}
 									selectImportSource={this.selectImportSource}
 								/> :
 								<FirebaseImport
-									setData={this.props.setData}
 									toggle={this.props.toggle}
 									selectImportSource={this.selectImportSource}
 								/>

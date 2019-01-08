@@ -2,10 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {setValue, changeColor, setColumnName, setRowName} from '../../../actions/index.js'
 
-export class DataTable extends React.Component {
+class DataTable extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,23 +14,12 @@ export class DataTable extends React.Component {
 	  this.state = {
 		  modalDataInput:false
 	  };
-
-  }
-
-	handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
   }
 
   renderColorInput = (item, i) => {
     return(
       <th style={{minWidth:"100px"}} key={i}>
-        <input type="color" className="form-control" name="color" value={this.props.colors[i]} onChange={(e) => this.props.handleColorChange(i,e)}/>
+        <input type="color" className="form-control" name="color" value={this.props.data.colors[i]} onChange={(e) => this.props.changeColor(i,e.target.value)}/>
       </th>
     );
   }
@@ -37,7 +27,7 @@ export class DataTable extends React.Component {
   renderColumnDescription = (item, i) => {
     return(
       <th style={{minWidth:"100px"}} key={i}>
-        <input type="text" value={this.props.colnames[i]} className="form-control" onChange={(event)=>this.handleChangeColumnName(i,event)}/>
+        <input type="text" value={this.props.data.colnames[i]} className="form-control" onChange={(event)=>this.handleChangeColumnName(i,event)}/>
       </th>
     );
   }
@@ -52,10 +42,7 @@ export class DataTable extends React.Component {
   }
 
   setVal = (i, j, val) => {
-    if(isNaN(val) || val==""){
-      this.props.showMessage("Values have to be a number");
-    }else{
-      this.props.showMessage(null);
+    if(!isNaN(val) && val!=""){
       this.props.setValue(i,j,val);
     }
   }
@@ -72,7 +59,7 @@ export class DataTable extends React.Component {
 
     return(
       <tr key={i}>
-        <td className="header_table_format"><input type="text" value={this.props.rownames[i]} className="form-control"  onChange={(event)=>this.handleChangeRowName(i,event)}/></td>
+        <td className="header_table_format"><input type="text" value={this.props.data.rownames[i]} className="form-control"  onChange={(event)=>this.handleChangeRowName(i,event)}/></td>
         {tmpRows}
       </tr>
     );
@@ -84,10 +71,9 @@ export class DataTable extends React.Component {
       handleConfirmDeleteRow: this.customConfirm
     };
 
-    const rows = this.props.rows;
-    const rownames = this.props.rownames;
-    const colnames = this.props.colnames;
-
+    const rows = this.props.data.rows;
+    const rownames = this.props.data.rownames;
+    const colnames = this.props.data.colnames;
 
     const cellEdit = {
       mode: 'click',
@@ -109,7 +95,6 @@ export class DataTable extends React.Component {
             </thead>
             <tbody>
               {rows.map(this.renderRows)}
-
             </tbody>
           </table>
       </div>
@@ -117,14 +102,17 @@ export class DataTable extends React.Component {
   }
 }
 
-/*
-<BootstrapTable options={ options } height='400' scrollTop={ 'Bottom' } data={this.convertRowsToAssociativeArray()} cellEdit={cellEdit} hover  >
-  <TableHeaderColumn width='100' row='0' col='0' dataField='color' dataAlign='center' className={ this.headerFormat }>Color</TableHeaderColumn>
-  {colnames.map(this.renderColorInput)}
+const mapStateToProps = (state) => ({
+  data: state.data
+})
 
-  <TableHeaderColumn isKey={true} hidden={true} dataField='ID' >ID</TableHeaderColumn>
-  <TableHeaderColumn width='100' row='1' col='0' dataField='description' columnClassName={ this.headerFormat } className={ this.headerFormat } dataAlign='center'>Description</TableHeaderColumn>
-  {colnames.map(this.renderRows)}
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setValue: setValue,
+    changeColor: changeColor,
+    setColumnName:setColumnName,
+    setRowName:setRowName
+  }, dispatch);
+}
 
-</BootstrapTable>
-*/
+export default connect(mapStateToProps, mapDispatchToProps)(DataTable);

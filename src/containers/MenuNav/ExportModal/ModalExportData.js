@@ -3,8 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
-import {ExportDestinationSelect} from "./ExportDestinationSelect.js"
-//import CSVReader from "react-csv-reader";
+import ExportDestinationSelect from "./ExportDestinationSelect.js"
 
 export class ModalExportData extends React.Component {
 
@@ -30,18 +29,16 @@ export class ModalExportData extends React.Component {
 		this.setState({
 			exportDestination:exportDestination
 		});
-		console.log(exportDestination);
 	}
 
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.modalExportData} toggle={this.props.toggle} className={this.props.className}>
+        <Modal isOpen={this.props.modalExportData} toggle={this.props.toggle}>
           <ModalHeader toggle={this.props.toggle}>Export data</ModalHeader>
           <ModalBody>
 						<ExportDestinationSelect
 							selectExportDestination={this.selectExportDestination}
-							data={this.props.data}
 							chartName={this.props.chartName}
 							toggle={this.props.toggle}
 						/>
@@ -54,13 +51,3 @@ export class ModalExportData extends React.Component {
     );
   }
 }
-
-
-/*
-
-	<CSVReader
-	 cssClass="react-csv-input"
-		onFileLoaded={this.loadData}
-	/>
-
-*/

@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import { MenuItem } from "./MenuItem.js";
 import { MenuHeader } from "./MenuHeader.js";
-import { ModalData } from "./DataModal/ModalData.js";
-import { ModalSettings } from "./SettingsModal/ModalSettings.js";
+import ModalData from "./DataModal/ModalData.js";
+import ModalSettings from "./SettingsModal/ModalSettings.js";
 import { ModalExportData } from "./ExportModal/ModalExportData.js";
 import { ModalImportData } from "./ImportModal/ModalImportData.js";
 import { ModalHelp } from "./ModalHelp.js";
@@ -97,58 +97,19 @@ export class MenuNav extends React.Component {
 					modalData={this.state.modalData}
 					toggle={this.toggleData}
           setData={this.props.setData}
-
-					colors={this.props.colors}
-					rows={this.props.rows}
-					nrows={this.props.nrows}
-					ncols={this.props.ncols}
-					colnames={this.props.colnames}
-					rownames={this.props.rownames}
-
-					addRow={this.props.addRow}
-					addCol ={this.props.addCol}
-					size={this.props.size}
-					setSize={this.props.setSize}
-					setColNames={this.props.setColNames}
-					setRowNames={this.props.setRowNames}
-					setValue={this.props.setValue}
-					value={this.props.value}
-          handleColorChange={this.props.handleColorChange}
-          clearData={this.props.clearData}
-					setColumnName={this.props.setColumnName}
-					setRowName={this.props.setRowName}
 				/>
 				<ModalSettings
 					modalChangeGraphType={this.state.settings}
 					toggle={this.toggleSettings}
-					chartType={this.props.chartType}
-          setChartType={this.props.setChartType}
-					setChartName={this.props.setChartName}
-					data={this.props.data}
-					setXAxisName={this.props.setXAxisName}
-					setYAxisName={this.props.setYAxisName}
-					setLegendVisibility={this.props.setLegendVisibility}
-					legend={this.props.legend}
 				/>
 				<ModalExportData
 					modalExportData={this.state.modalExportData}
 					toggle={this.toggleModalExportData}
-					setData={this.setData}
-					data={this.props.data}
-
-					colors={this.props.colors}
-					rows={this.props.rows}
-					nrows={this.props.nrows}
-					ncols={this.props.ncols}
-					colnames={this.props.colnames}
-					rownames={this.props.rownames}
-
 					chartName={this.props.chartName}
 				/>
 				<ModalImportData
 					modalImportData={this.state.modalImportData}
 					toggle={this.toggleModalImportData}
-          setData={this.props.setData}
 				/>
 				<ModalHelp
 					modalHelp={this.state.modalHelp}

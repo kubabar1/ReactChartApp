@@ -2,9 +2,9 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles.css";
 import { VictoryChart} from "victory-chart";
-import { VictoryTheme, VictoryBar, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
+import { VictoryTheme, VictoryLine, VictoryScatter, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
 
-export class BarVertical extends React.Component {
+export class Line extends React.Component {
 
   renderChart = () => {
     const rows = this.props.data.rows;
@@ -28,17 +28,22 @@ export class BarVertical extends React.Component {
       >
         <VictoryLabel text={this.props.data.chartName} x={180} y={30} textAnchor="middle"/>
         <VictoryAxis label={this.props.data.x_name} style={{ axisLabel: {padding: 35} }} />
-        <VictoryAxis dependentAxis label={this.props.data.y_name} style={{ axisLabel: {padding: 30} }} />
-        <VictoryBar
+        <VictoryAxis dependentAxis label={this.props.data.y_name} style={{ axisLabel: {padding: 35} }} />
+        <VictoryScatter
           style={{
             data: {
               fill: (d) => d.fill,
               opacity: (d) => d.opacity
             }
           }}
-          size={5}
+          size={3}
           data={dataArray}
           labelComponent={<VictoryTooltip/>}
+        />
+        <VictoryLine
+          size={5}
+          labelComponent={<VictoryTooltip/>}
+          data={dataArray}
         />
       </VictoryChart>
     );
@@ -48,7 +53,7 @@ export class BarVertical extends React.Component {
 
 
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:450, top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
         {this.renderChart()}
       </div>
     );

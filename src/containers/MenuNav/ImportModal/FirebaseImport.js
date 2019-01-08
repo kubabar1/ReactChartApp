@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import db from "../../Firebase/MyDB.js";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {setData} from '../../../actions/index.js'
 
-export class FirebaseImport extends React.Component {
+class FirebaseImport extends React.Component {
 
 	constructor(props) {
 	  super(props);
@@ -134,3 +137,13 @@ export class FirebaseImport extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({setData: setData}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirebaseImport);

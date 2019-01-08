@@ -4,7 +4,7 @@ import "../styles.css";
 import { VictoryChart} from "victory-chart";
 import { VictoryTheme, VictoryBar, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
 
-export class BarHorizontal extends React.Component {
+export class BarVertical extends React.Component {
 
   renderChart = () => {
     const rows = this.props.data.rows;
@@ -20,8 +20,9 @@ export class BarHorizontal extends React.Component {
       })
     });
 
+
     return(
-      <VictoryChart horizontal
+      <VictoryChart
         theme={VictoryTheme.material} domainPadding={5}
         animate={{ duration: 1000 }}
       >
@@ -29,14 +30,14 @@ export class BarHorizontal extends React.Component {
         <VictoryAxis label={this.props.data.x_name} style={{ axisLabel: {padding: 35} }} />
         <VictoryAxis dependentAxis label={this.props.data.y_name} style={{ axisLabel: {padding: 30} }} />
         <VictoryBar
-          size={5}
-          data={dataArray}
           style={{
             data: {
               fill: (d) => d.fill,
               opacity: (d) => d.opacity
             }
           }}
+          size={5}
+          data={dataArray}
           labelComponent={<VictoryTooltip/>}
         />
       </VictoryChart>
@@ -47,7 +48,7 @@ export class BarHorizontal extends React.Component {
 
 
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{height:450, top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
         {this.renderChart()}
       </div>
     );

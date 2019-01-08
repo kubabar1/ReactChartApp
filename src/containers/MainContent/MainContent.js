@@ -6,7 +6,7 @@ import { BarVertical } from "./ChartTypes/BarVertical.js";
 import { BarHorizontal } from "./ChartTypes/BarHorizontal.js";
 import { Line } from "./ChartTypes/Line.js";
 import { Pie } from "./ChartTypes/Pie.js";
-import { Move } from "./Move.js";
+import Move from "./Move.js";
 import { Legend } from "./Legend.js";
 
 export class MainContent extends React.Component {
