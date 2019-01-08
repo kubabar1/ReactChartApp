@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes.js'
 const chartInfo = {
   top:0,
   left:0,
-  legend:false,
+  legend:false
 };
 
 export default (state = chartInfo, action) => {
@@ -18,7 +18,7 @@ export default (state = chartInfo, action) => {
       let y1 = top1-10;
       if(y1>=-200){
         return Object.assign({}, state, {
-          top1: y1
+          top: y1
         })
       }
       return state
@@ -28,7 +28,7 @@ export default (state = chartInfo, action) => {
       let y2 = top2+10;
       if(y2<=200){
         return Object.assign({}, state, {
-          top2: y2
+          top: y2
         })
       }
       return state;
@@ -38,7 +38,7 @@ export default (state = chartInfo, action) => {
       let y3 = left1-10;
       if(y3>=-200){
         return Object.assign({}, state, {
-          left1:y3
+          left:y3
         })
       }
       return state;
@@ -48,7 +48,7 @@ export default (state = chartInfo, action) => {
         let y4 = left2+10;
         if(y4<=200){
           return Object.assign({}, state, {
-            left2:y4
+            left:y4
           })
         }
         return state;

@@ -3,8 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles.css";
 import { VictoryChart} from "victory-chart";
 import { VictoryTheme, VictoryLine, VictoryScatter, VictoryLabel, VictoryAxis, VictoryTooltip } from "victory";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
 
-export class Line extends React.Component {
+class Line extends React.Component {
 
   renderChart = () => {
     const rows = this.props.data.rows;
@@ -50,12 +52,18 @@ export class Line extends React.Component {
   }
 
   render() {
-
-
     return (
-      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.top, left:this.props.left}}>
+      <div id="chart-container" className="col-md-9 mx-auto text-center" style={{top:this.props.chartInfo.top, left:this.props.chartInfo.left}}>
         {this.renderChart()}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+  chartInfo: state.chartInfo
+})
+
+
+export default connect(mapStateToProps, null)(Line);

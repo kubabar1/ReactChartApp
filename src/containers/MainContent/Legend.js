@@ -1,15 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import { connect } from 'react-redux'
 
-export class Legend extends React.Component {
-
-  constructor(props) {
-	  super(props);
-	  this.state = {
-
-	  };
-	}
+class Legend extends React.Component {
 
   renderItem = (item, index) => {
     const colors = this.props.data.colors;
@@ -35,3 +29,9 @@ export class Legend extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data
+})
+
+export default connect(mapStateToProps, null)(Legend);

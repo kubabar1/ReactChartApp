@@ -1,29 +1,27 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import { Scatter } from "./ChartTypes/Scatter.js";
-import { BarVertical } from "./ChartTypes/BarVertical.js";
-import { BarHorizontal } from "./ChartTypes/BarHorizontal.js";
-import { Line } from "./ChartTypes/Line.js";
-import { Pie } from "./ChartTypes/Pie.js";
+import Scatter from "./ChartTypes/Scatter.js";
+import BarVertical from "./ChartTypes/BarVertical.js";
+import BarHorizontal from "./ChartTypes/BarHorizontal.js";
+import Line from "./ChartTypes/Line.js";
+import Pie from "./ChartTypes/Pie.js";
 import Move from "./Move.js";
-import { Legend } from "./Legend.js";
+import Legend from "./Legend.js";
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {} from '../../actions/index.js'
 
-export class MainContent extends React.Component {
+class MainContent extends React.Component {
 
 
   renderChart = () => {
-    const chartType = this.props.chartType;
+    const chartType = this.props.data.chartType;
 
     let tmp;
 
     if(chartType == "Scatter"){
-      tmp=<Scatter
-        top={this.props.top}
-        left={this.props.left}
-        color={this.props.color}
-        data={this.props.data}
-      />;
+      tmp=<Scatter/>;
     }else if(chartType == "Pie"){
       tmp=<Pie
         top={this.props.top}
@@ -60,25 +58,19 @@ export class MainContent extends React.Component {
 
   render() {
     const chartType = this.props.chartType;
-    const legend = this.props.legend;
+    const legend = this.props.chartInfo.legend;
+
 
     return (
       <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         <div className="row">
           <div id="chart-cont" className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
             {this.renderChart()}
-            <Move
-              moveTop={this.props.moveTop}
-              moveBottom={this.props.moveBottom}
-              moveLeft={this.props.moveLeft}
-              moveRight={this.props.moveRight}
-            />
+            <Move/>
           </div>
           <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2 mx-auto">
             { legend ?
-              <Legend
-                data={this.props.data}
-              /> : ""
+              <Legend/> : ""
             }
           </div>
         </div>
@@ -87,3 +79,16 @@ export class MainContent extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+  chartInfo: state.chartInfo
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);

@@ -1,6 +1,6 @@
 import React from "react";
 import { MenuNav } from "./MenuNav/MenuNav";
-import { MainContent } from "./MainContent/MainContent";
+import MainContent from "./MainContent/MainContent";
 
 export class App extends React.Component {
 
@@ -27,51 +27,6 @@ export class App extends React.Component {
       }
     };
   }
-
-
-
-  setXAxisName = (name) => {
-    this.setState(prevState => ({
-      data: {
-          ...prevState.data,
-          x_name: name
-      }
-    }))
-  }
-
-  setYAxisName = (name) => {
-    this.setState(prevState => ({
-      data: {
-          ...prevState.data,
-          y_name: name
-      }
-    }))
-  }
-
-  setChartName = (chartName) => {
-    this.setState(prevState => ({
-      data: {
-          ...prevState.data,
-          chartName: chartName
-      }
-    }))
-  }
-
-  setChartType = (chartType) => {
-    this.setState(prevState => ({
-      data: {
-          ...prevState.data,
-          chartType:chartType
-      }
-    }));
-  }
-  value = (r,c) => {
-    return this.state.data.rows[r][c]
-  }
-
-
-
-
 
   copy = (src) => {
     return JSON.parse(JSON.stringify(src));
@@ -143,51 +98,11 @@ export class App extends React.Component {
     tmp2 = {};
   }
 
-
-
-
-
-
-
-
-
-
-
   render() {
     return (
       <main className="row m-0 p-0">
-        <MenuNav
-          setColors={this.setColors}
-          setData={this.setData}
-
-          data={this.state.data}
-          chartName={this.state.chartName}
-          chartType={this.state.data.chartType}
-          legend={this.state.legend}
-
-          value={this.value}
-          setChartType={this.setChartType}
-          setChartName={this.setChartName}
-          setLegendVisibility={this.setLegendVisibility}
-
-          setXAxisName={this.setXAxisName}
-          setYAxisName={this.setYAxisName}
-
-          undo={this.undo}
-
-        />
-        <MainContent
-          top={this.state.top}
-          left={this.state.left}
-          moveTop={this.moveTop}
-          moveBottom={this.moveBottom}
-          moveLeft={this.moveLeft}
-          moveRight={this.moveRight}
-          chartType={this.state.data.chartType}
-          colors={this.state.data.colors}
-          data={this.state.data}
-          legend={this.state.legend}
-        />
+        <MenuNav/>
+        <MainContent/>
       </main>
     );
   }
