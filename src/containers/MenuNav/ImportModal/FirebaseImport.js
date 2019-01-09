@@ -113,18 +113,20 @@ class FirebaseImport extends React.Component {
 				<div className="mb-4">
         	<h2>Select chart</h2>
 	      </div>
-				<table className="table table-bordered table-hover">
-    			<thead className="thead-light">
-      			<tr>
-        			<th>Chart name</th>
-        			<th>Import</th>
-        			<th>Delete</th>
-      			</tr>
-    			</thead>
-    			<tbody>
-						{charts ? charts.map(this.renderRow) : <tr></tr>}
-    			</tbody>
-  			</table>
+				<div className="table-wrapper-scroll-y table-responsive">
+					<table className="table table-bordered table-hover">
+    				<thead className="thead-light">
+      				<tr>
+        				<th>Chart name</th>
+        				<th>Import</th>
+        				<th>Delete</th>
+      				</tr>
+    				</thead>
+    				<tbody>
+							{charts ? charts.map(this.renderRow) : <tr></tr>}
+    				</tbody>
+  				</table>
+				</div>
 				{
 					message ? [
 					<div key="error-message" className="alert alert-danger mt-4" role="alert">
