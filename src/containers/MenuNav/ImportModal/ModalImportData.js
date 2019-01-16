@@ -69,7 +69,7 @@ export class ModalImportData extends React.Component {
 						}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={(e) => {this.selectImportSource(null); this.props.toggle(e); }}>Cancel</Button>
+            <Button color="secondary" onClick={(e) => {this.selectImportSource(null); this.props.toggle(e); }}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>

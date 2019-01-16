@@ -43,7 +43,7 @@ export class ModalExportData extends React.Component {
 						/>
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
+            <Button color="secondary" onClick={this.props.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>

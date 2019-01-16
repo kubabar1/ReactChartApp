@@ -133,7 +133,7 @@ class DeviceImport extends React.Component {
 				{
 					message ? [
 					<div key="error-message" className="alert alert-danger mt-4" role="alert">
-						{"CSV load error: "+message}
+						{"CSV load error"}
 					</div>] : ""
 				}
       </div>

@@ -167,7 +167,7 @@ class ModalSettings extends React.Component {
 						</div>
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
+            <Button color="secondary" onClick={this.props.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
